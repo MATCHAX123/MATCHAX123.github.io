@@ -1,1 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinya Lee - 李新野</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f3f3f3;
+            padding: 0;
+        }
+
+        .phone-shell {
+            max-width: 430px;
+            margin: 0 auto;
+            background: #0d0d0d;
+            min-height: 100vh;
+            padding: 10px 0 20px;
+            position: relative;
+        }
+
+        .statusbar {
+            color: white;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .signal {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 10px;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .battery {
+            width: 22px;
+            height: 11px;
+            border: 1.5px solid white;
+            border-radius: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .battery:after {
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: 2px;
+            width: 2px;
+            height: 5px;
+            background: white;
+            border-radius: 1px;
+        }
+
+        .battery:before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: 14px;
+            height: 5px;
+            background: white;
+            border-radius: 1px;
+        }
+
+        .app {
+            background: #f7f7f7;
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: calc(100vh - 60px);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px 14px;
+            background: #f3f3f3;
+            border-bottom: 1px solid #e2e2e2;
+            color: #111;
+        }
+
+        .topnav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close {
+            font-size: 32px;
+            line-height: 1;
+            font-weight: 300;
+        }
+
+        .nav-arrow {
+            font-size: 28px;
+            font-weight: 300;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 20px;
+        }
+
+        .content {
+            background: #f3f3f3;
+            padding: 0 18px 30px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 18px 0 8px;
+        }
+
+        .avatar {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #ddd;
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-text {
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .profile-sub {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+            line-height: 1.5;
+        }
+
+        .profile-sub a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .link-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            display: inline-block;
+            background: #ececec;
+            border: 1px solid #d9d9d9;
+            color: #3a3a3a;
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 18px 0 10px;
+            color: #111;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .info-table td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            width: 85px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .section {
+            margin-top: 18px;
+        }
+
+        .timeline {
+            margin-top: 10px;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 66px 1fr 100px;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        .timeline-row:last-child {
+            border-bottom: none;
+        }
+
+        .year {
+            color: #595959;
+            font-weight: 600;
+        }
+
+        .job {
+            color: #1f1f1f;
+            font-weight: 600;
+        }
+
+        .role {
+            text-align: right;
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+
+        .research {
+            margin-top: 18px;
+        }
+
+        .research p {
+            font-size: 12px;
+            color: #484848;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .research ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .research li {
+            margin-bottom: 4px;
+        }
+
+        .research a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-shell">
+        <div class="statusbar">
+            <div class="status-left">
+                <span>22:50</span>
+            </div>
+            <div class="status-right">
+                <span class="signal">◔ 4G</span>
+                <span class="battery"></span>
+                <span>15</span>
+            </div>
+        </div>
+
+        <div class="app">
+            <div class="topnav">
+                <div class="topnav-left">
+                    <span class="close">×</span>
+                    <span class="nav-arrow">⌄</span>
+                    <span class="title">Sinya Lee...</span>
+                </div>
+                <div class="nav-icons">
+                    <span>◌</span>
+                    <span>◍</span>
+                    <span>⋮</span>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="profile">
+                    <div class="avatar">
+                        <img src="photo.jpg" alt="avatar">
+                    </div>
+                    <div class="profile-text">
+                        <h2 class="profile-name">Sinya Lee 李新野</h2>
+                        <div class="profile-sub">
+                            Welcome to my homepage. I am the founder and CEO of <a href="#">Alpha Star Research</a>, a quantitative research company focused on cutting-edge AI and market intelligence, based in New York City.
+                        </div>
+                        <div class="link-row">
+                            <span class="chip">Essays</span>
+                            <span class="chip">中文博客</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>About Me</h3>
+                <table class="info-table">
+                    <tr>
+                        <td>Position:</td>
+                        <td>CEO of Alpha Star Research</td>
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        <td>New York, London, and Hong Kong</td>
+                    </tr>
+                    <tr>
+                        <td>Hometown:</td>
+                        <td>Shandong</td>
+                    </tr>
+                    <tr>
+                        <td>Cities Lived:</td>
+                        <td>Shanghai, Beijing, Boston, San Francisco, New York, London, Shenzhen, Hong Kong</td>
+                    </tr>
+                    <tr>
+                        <td>Languages:</td>
+                        <td>Mandarin (native), English, Cantonese, Hokkien, Hakka</td>
+                    </tr>
+                    <tr>
+                        <td>Skills:</td>
+                        <td>Python, JavaScript, Java, Go, Rust, SQL, Machine Learning</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>sinya@xxx.com</td>
+                    </tr>
+                </table>
+
+                <div class="section">
+                    <h3>Work Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-row">
+                            <div class="year">2023</div>
+                            <div class="job">Alpha Star Research</div>
+                            <div class="role">Founder &amp; CEO</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2022</div>
+                            <div class="job">Citadel Securities</div>
+                            <div class="role">Research Engineer</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2020</div>
+                            <div class="job">Meta</div>
+                            <div class="role">Software Engineer</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2017</div>
+                            <div class="job">Twitch</div>
+                            <div class="role">Software Engineer</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2015</div>
+                            <div class="job">TeleVeh</div>
+                            <div class="role">Founder &amp; CEO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-row">
+                            <div class="year">2014</div>
+                            <div class="job">Brown University</div>
+                            <div class="role">M.S.</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2010</div>
+                            <div class="job">Tsinghua University</div>
+                            <div class="role">B.S.</div>
+                        </div>
+                        <div class="timeline-row">
+                            <div class="year">2009</div>
+                            <div class="job">MIT</div>
+                            <div class="role">Research</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research">
+                    <h3>Academic Research</h3>
+                    <p>
+                        My research interests are in cryptography and game theory, especially mechanism design.
+                        I have worked on algorithmic fairness and strategic modeling for market systems and published several pieces in the areas of computational economics and data-driven inference.
+                    </p>
+                    <ul>
+                        <li><a href="#">Sinya Lee. Maximization of relative social welfare in truthful social choice schemes.</a> Undergraduate Thesis, 2013.</li>
+                        <li><a href="#">Sinya Lee and Andrew Yao. On mechanism design with welfare guarantees.</a> Proceedings of the National Academy of Sciences, 2014.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
