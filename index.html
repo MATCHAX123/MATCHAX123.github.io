@@ -10,18 +10,16 @@
     :root{--paper:#f5f3ee;--ink:#171717;--muted:#77736b;--line:#d8d4ca;--accent:#c85b3e;--max:1160px}
     *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
     body{background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
-    /* ===== 改动 1/2：纸张颗粒噪点 ===== */
     body::before{
       content:"";
       position:fixed;
       inset:0;
       z-index:0;
       pointer-events:none;
-      opacity:.04;
+      opacity:.06;
       mix-blend-mode:multiply;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    /* ===== 改动 2/2：内容层叠到噪点之上 ===== */
     main{position:relative;z-index:1}
     footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
