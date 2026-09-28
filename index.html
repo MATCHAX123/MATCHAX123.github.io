@@ -6,6 +6,32 @@
   <meta name="description" content="Leven Shaw - Translator, Cultural Intelligence Enthusiast, Linguistics Nerd">
   <meta name="theme-color" content="#f7eee9">
   <title>Leven Shaw — Translator &amp; Cultural Intelligence</title>
+
+  <!-- A. favicon（内联 SVG，砖红圆点 + L） -->
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7eee9'/%3E%3Ctext x='30' y='45' font-family='Inter,sans-serif' font-size='36' font-weight='800' fill='%23171717' text-anchor='middle'%3EL%3C/text%3E%3Ccircle cx='48' cy='42' r='5' fill='%23c85b3e'/%3E%3C/svg%3E">
+
+  <!-- H. 结构化数据（给 Google / Bing 看） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leven Shaw",
+    "jobTitle": "Translator",
+    "description": "Chinese–English–Russian translator and Cultural Intelligence enthusiast.",
+    "url": "https://matchax123.github.io/levenshaw.com/",
+    "email": "mailto:levenxiao@gmail.com",
+    "knowsLanguage": ["zh", "en", "ru", "fr"],
+    "knowsAbout": ["Translation", "Cultural Intelligence", "Linguistics"],
+    "sameAs": [
+      "https://t.me/matchax123",
+      "https://www.reddit.com/u/Levenshaw/",
+      "https://x.com/LevenXiao82975",
+      "https://xhslink.cn/o/1U8wPWhMwS4"
+    ]
+  }
+  </script>
+
   <style>
     :root{--paper:#f7eee9;--ink:#171717;--muted:#77736b;--line:#d8d4ca;--accent:#c85b3e;--max:1160px}
     *{box-sizing:border-box;margin:0;padding:0}
@@ -22,15 +48,12 @@
       font-feature-settings:"kern" 1,"liga" 1,"calt" 1;
       line-height:1.55;
     }
-    /* 选中文字 */
     ::selection{background:var(--accent);color:#fff}
     ::-moz-selection{background:var(--accent);color:#fff}
-    /* 滚动条 */
     ::-webkit-scrollbar{width:10px;height:10px}
     ::-webkit-scrollbar-track{background:transparent}
     ::-webkit-scrollbar-thumb{background:rgba(200,91,62,.22);border-radius:5px;border:2px solid var(--paper)}
     ::-webkit-scrollbar-thumb:hover{background:rgba(200,91,62,.45)}
-    /* 焦点可见 */
     :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
     a:focus-visible,button:focus-visible{outline-offset:4px}
 
@@ -49,6 +72,7 @@
     }
     .veil{position:fixed;inset:0;z-index:60;pointer-events:none;background:var(--paper);opacity:1;transition:opacity .9s ease}
     .veil.gone{opacity:0}
+
     /* 滚动进度线 */
     .progress{
       position:fixed;top:0;left:0;height:2px;width:100%;
@@ -58,6 +82,10 @@
       transition:opacity .4s ease;opacity:.85;
     }
     .progress.idle{opacity:.28}
+
+    /* D. 语言切换淡入淡出 */
+    [data-i18n]{transition:opacity .2s ease}
+    body.lang-fade [data-i18n]{opacity:0}
 
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
     .reveal.in{opacity:1;transform:none}
@@ -73,7 +101,7 @@
     .brand{font-weight:800;letter-spacing:-.04em;font-size:20px}
     .brand span{color:var(--accent)}
 
-    /* ===== 导航栏里的小火柴人 ===== */
+    /* 导航栏里的小火柴人 */
     .kid-wrap{display:inline-flex;align-items:center;color:var(--ink);line-height:0;opacity:.85}
     .kid-fire{width:56px;height:28px;display:block;overflow:visible}
     .kf-line{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
@@ -117,7 +145,6 @@
     .lang-switch button:hover{color:var(--accent)}
     .lang-switch button.active{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
 
-    /* ===== 区块锚点自动留出吸顶栏高度 ===== */
     section[id]{scroll-margin-top:90px}
 
     .hero{min-height:calc(100vh - 77px);display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:70px;padding:80px 0}
@@ -141,7 +168,14 @@
     .button.primary{background:var(--ink);color:#fff}
     .button:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-1px)}
     .button:hover:after{left:100%}
-    .portrait{aspect-ratio:4/5;background:#ded9cf;position:relative;overflow:hidden;border-radius:2px}
+
+    /* G. 头像微视差 */
+    .portrait{
+      aspect-ratio:4/5;background:#ded9cf;position:relative;overflow:hidden;border-radius:2px;
+      transform:translate3d(calc(var(--px,0) * -3px), calc(var(--py,0) * -3px), 0);
+      transition:transform .5s cubic-bezier(.2,.7,.2,1);
+      will-change:transform;
+    }
     .portrait:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.28),transparent 45%,rgba(0,0,0,.08))}
     .portrait img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
     .portrait:hover img{transform:scale(1.02)}
@@ -186,8 +220,10 @@
     .social-link .arrow{float:right;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
     .social-link:hover .arrow{transform:translateX(4px)}
 
-    .timeline{margin-top:28px}
+    /* E. 时间线编号 */
+    .timeline{margin-top:28px;counter-reset:tl}
     .timeline-item{
+      counter-increment:tl;
       margin-bottom:35px;border-left:2px solid var(--line);padding-left:28px;position:relative;
       transition:border-color .35s ease;
     }
@@ -202,6 +238,12 @@
       box-shadow:0 0 0 4px rgba(200,91,62,.12);
     }
     .timeline-period{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .timeline-period:before{
+      content:counter(tl,decimal-leading-zero) "  ·  ";
+      color:var(--muted);
+      opacity:.55;
+      font-weight:600;
+    }
     .timeline-title{font-size:19px;font-weight:600;margin:5px 0}
     .timeline-desc{font-size:15px;color:var(--muted);line-height:1.6}
 
@@ -211,7 +253,50 @@
     .contact-copy a{color:var(--accent);border-bottom:1px solid transparent;transition:border-color .25s ease}
     .contact-copy a:hover{border-bottom-color:var(--accent)}
 
-    footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
+    footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line)}
+    .footer-right{display:flex;align-items:center;gap:14px}
+
+    /* C. 分享按钮 */
+    .share-btn{
+      background:none;border:1px solid var(--line);border-radius:50%;
+      width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
+      color:var(--muted);cursor:pointer;padding:0;
+      transition:color .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .share-btn:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+    .share-btn svg{width:14px;height:14px}
+
+    /* 回到顶部 */
+    .to-top{
+      position:fixed;right:24px;bottom:24px;
+      width:42px;height:42px;border-radius:50%;
+      background:rgba(247,238,233,.9);border:1px solid var(--line);
+      color:var(--accent);font-size:18px;cursor:pointer;padding:0;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;pointer-events:none;transform:translateY(10px);
+      transition:opacity .35s ease, transform .35s ease, border-color .25s ease, background .25s ease;
+      z-index:15;
+      backdrop-filter:blur(10px) saturate(140%);
+      -webkit-backdrop-filter:blur(10px) saturate(140%);
+    }
+    .to-top.show{opacity:1;pointer-events:auto;transform:none}
+    .to-top:hover{border-color:var(--accent);background:#fff}
+    .to-top svg{width:16px;height:16px}
+
+    /* Toast */
+    .toast{
+      position:fixed;left:50%;bottom:36px;
+      transform:translate(-50%,12px);
+      background:var(--ink);color:#fff;
+      padding:12px 20px;font-size:13px;
+      border-radius:4px;
+      opacity:0;pointer-events:none;
+      transition:opacity .3s ease, transform .3s ease;
+      z-index:80;
+      max-width:min(520px,calc(100% - 32px));
+      line-height:1.5;
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
 
     @media(max-width:760px){
       .wrap{width:min(var(--max),calc(100% - 32px))}
@@ -229,7 +314,8 @@
       .section-head{display:block}.section-head p{margin-top:12px}
       .about,.contact{grid-template-columns:1fr;gap:36px}
       .facts-group,.links-grid,.essay-grid{grid-template-columns:1fr}
-      footer{flex-direction:column;gap:10px}
+      footer{flex-direction:column;gap:12px}
+      .to-top{width:38px;height:38px;right:16px;bottom:16px}
     }
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
@@ -238,12 +324,14 @@
       .kf-kid,.kf-zzz text{animation:none}
       .portrait img{transition:none}
       .button:after{display:none}
+      [data-i18n]{transition:none}
     }
   </style>
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
   <div class="veil" id="veil"></div>
+
   <header><nav class="wrap">
     <div class="nav-left">
       <a class="brand" href="#top">Leven<span>.</span></a>
@@ -294,6 +382,7 @@
     </div>
     <div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#essays" data-i18n="nav_essays">Essays</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div>
   </nav></header>
+
   <main id="top">
     <section class="hero wrap"><div><div class="greet" id="greet">你好</div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
     <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
@@ -315,7 +404,34 @@
    <section><div class="wrap"><div class="section-head"><h2 data-i18n="edu_title">Education</h2><p data-i18n="edu_sub">Academic background and training.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="e1_period">2024 – Present</div><div class="timeline-title" data-i18n="e1_title">МГУ ЭФ, Management</div><div class="timeline-desc" data-i18n="e1_desc">Undergraduate</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e2_period">2023 – 2024</div><div class="timeline-title" data-i18n="e2_title">МГУ Language School, Gap Year</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e3_period">2022 – 2023</div><div class="timeline-title" data-i18n="e3_title">Shandong University of Arts, Art Management and Art Theory Criticism</div><div class="timeline-desc" data-i18n="e3_desc">Undergraduate</div></div></div></div></section>
     <section id="contact"><div class="wrap contact"><div><div class="eyebrow" data-i18n="contact_eyebrow">Get in touch</div><h2 data-i18n="contact_title">Let's<br>connect.</h2></div><div><p class="contact-copy" data-i18n="contact_p1">If you have a translation request, want to collaborate on a project, or just want to chat about language and culture, I'd love to hear from you.</p><p class="contact-copy"><strong data-i18n="contact_email_label">Email:</strong> <a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p><div class="links-grid"><a class="social-link" href="https://t.me/matchax123" target="_blank">Telegram <span class="arrow">→</span></a><a class="social-link" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank">Reddit <span class="arrow">→</span></a><a class="social-link" href="https://x.com/LevenXiao82975" target="_blank">X <span class="arrow">→</span></a><a class="social-link" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank">小红书 <span class="arrow">→</span></a></div></div></div></section>
   </main>
-  <footer class="wrap"><span>© 2025 Leven Shaw</span><span data-i18n="footer_tag">Language • Culture • Translation</span></footer>
+
+  <footer class="wrap">
+    <span>© 2025 Leven Shaw</span>
+    <div class="footer-right">
+      <span data-i18n="footer_tag">Language • Culture • Translation</span>
+      <button type="button" class="share-btn" id="shareBtn" aria-label="Share this page" title="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button type="button" class="to-top" id="toTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5"/>
+      <path d="M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite"></div>
+
   <script>
     const I18N = {
       en: {
@@ -482,14 +598,21 @@
 
     const DEFAULT_LANG = "en";
     const SUPPORTED = ["en", "zh", "ru", "fr"];
+    let currentLang = null;
+    let switching = false;
+    let baseTitle = document.title;
+
     const langButtons = document.querySelectorAll(".lang-switch button");
     const i18nNodes = document.querySelectorAll("[data-i18n]");
 
-    function applyLang(lang) {
-      if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
+    function applyLangNow(lang) {
       const dict = I18N[lang];
+      currentLang = lang;
       document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-      if (dict.page_title) document.title = dict.page_title;
+      if (dict.page_title) {
+        baseTitle = dict.page_title;
+        if (!document.hidden) document.title = baseTitle;
+      }
       i18nNodes.forEach(function (el) {
         const key = el.getAttribute("data-i18n");
         if (Object.prototype.hasOwnProperty.call(dict, key)) el.innerHTML = dict[key];
@@ -500,20 +623,36 @@
       try { localStorage.setItem("ls-lang", lang); } catch (e) {}
     }
 
+    /* D. 带淡入淡出的语言切换 */
+    function applyLang(lang, animate) {
+      if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
+      if (animate && !switching && lang !== currentLang) {
+        switching = true;
+        document.body.classList.add("lang-fade");
+        setTimeout(function(){
+          applyLangNow(lang);
+          document.body.classList.remove("lang-fade");
+          switching = false;
+        }, 200);
+      } else if (!animate) {
+        applyLangNow(lang);
+      }
+    }
+
     langButtons.forEach(function (btn) {
-      btn.addEventListener("click", function () { applyLang(btn.dataset.lang); });
+      btn.addEventListener("click", function () { applyLang(btn.dataset.lang, true); });
     });
 
     (function initLang() {
       let saved = null;
       try { saved = localStorage.getItem("ls-lang"); } catch (e) {}
-      if (saved && SUPPORTED.includes(saved)) { applyLang(saved); return; }
+      if (saved && SUPPORTED.includes(saved)) { applyLang(saved, false); return; }
       const nav = (navigator.language || "").toLowerCase();
       let guess = DEFAULT_LANG;
       if (nav.indexOf("zh") === 0) guess = "zh";
       else if (nav.indexOf("ru") === 0) guess = "ru";
       else if (nav.indexOf("fr") === 0) guess = "fr";
-      applyLang(guess);
+      applyLang(guess, false);
     })();
 
     const menu = document.querySelector(".menu"), navLinks = document.querySelector(".navlinks");
@@ -522,7 +661,16 @@
       link.addEventListener("click", function () { navLinks.classList.remove("open"); });
     });
 
-    /* ===== 导航栏小火柴人 ===== */
+    /* B. 标签页失焦换标题 */
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        document.title = "Come back anytime · Leven";
+      } else {
+        document.title = baseTitle;
+      }
+    });
+
+    /* 导航栏小火柴人 */
     (function(){
       const wrap = document.getElementById("kidWrap");
       if (!wrap) return;
@@ -555,7 +703,7 @@
       });
     })();
 
-    /* ===== 顶部滚动进度线 ===== */
+    /* 顶部滚动进度线 */
     (function(){
       const bar = document.getElementById("progress");
       if (!bar) return;
@@ -590,11 +738,24 @@
       }, 3000);
     })();
 
-    /* 光标跟随光晕 */
-    window.addEventListener("pointermove", function(e){
-      document.body.style.setProperty("--mx", e.clientX + "px");
-      document.body.style.setProperty("--my", e.clientY + "px");
-    }, {passive:true});
+    /* 光标跟随光晕 + G. 头像微视差（共用 pointermove） */
+    (function(){
+      let px = 0, py = 0, rafPending = false;
+      window.addEventListener("pointermove", function(e){
+        document.body.style.setProperty("--mx", e.clientX + "px");
+        document.body.style.setProperty("--my", e.clientY + "px");
+        px = (e.clientX / window.innerWidth - .5) * 2;
+        py = (e.clientY / window.innerHeight - .5) * 2;
+        if (!rafPending) {
+          rafPending = true;
+          requestAnimationFrame(function(){
+            rafPending = false;
+            document.documentElement.style.setProperty("--px", px.toFixed(3));
+            document.documentElement.style.setProperty("--py", py.toFixed(3));
+          });
+        }
+      }, {passive:true});
+    })();
 
     /* 滚动入场 */
     (function(){
@@ -616,6 +777,55 @@
       const v = document.getElementById("veil");
       if(v){ requestAnimationFrame(function(){ v.classList.add("gone"); }); }
     });
+
+    /* 回到顶部 */
+    (function(){
+      const btn = document.getElementById("toTop");
+      if (!btn) return;
+      function update() {
+        if (window.scrollY > window.innerHeight * .8) btn.classList.add("show");
+        else btn.classList.remove("show");
+      }
+      window.addEventListener("scroll", update, {passive:true});
+      window.addEventListener("resize", update);
+      btn.addEventListener("click", function(){
+        window.scrollTo({top:0, behavior:"smooth"});
+      });
+      update();
+    })();
+
+    /* C. 分享按钮 */
+    (function(){
+      const btn = document.getElementById("shareBtn");
+      const toast = document.getElementById("toast");
+      if (!btn) return;
+      let toastTimer = null;
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 1800);
+      }
+      btn.addEventListener("click", function(){
+        const data = {
+          title: baseTitle,
+          text: "Leven Shaw — Translator & Cultural Intelligence",
+          url: location.href
+        };
+        if (navigator.share) {
+          navigator.share(data).catch(function(){});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(location.href).then(function(){
+            showToast("Link copied");
+          }).catch(function(){
+            showToast("Copy failed");
+          });
+        } else {
+          showToast("Copy not supported");
+        }
+      });
+    })();
   </script>
 </body>
 </html>
