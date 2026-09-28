@@ -20,45 +20,24 @@
       font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       line-height:1.55;
     }
-    /* 斜向反射光 */
     body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
       background:linear-gradient(115deg,
         rgba(255,255,255,.55) 0%,
         rgba(255,255,255,0) 28%,
         rgba(255,255,255,0) 72%,
         rgba(255,255,255,.3) 100%);
     }
-    /* 光标跟随光晕 */
     body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
       background:radial-gradient(560px circle at var(--mx,50%) var(--my,40%),
         rgba(200,91,62,.07), transparent 62%);
     }
-    /* 加载揭幕 */
-    .veil{
-      position:fixed;inset:0;z-index:60;pointer-events:none;
-      background:var(--paper);
-      opacity:1;transition:opacity .9s ease;
-    }
+    .veil{position:fixed;inset:0;z-index:60;pointer-events:none;background:var(--paper);opacity:1;transition:opacity .9s ease}
     .veil.gone{opacity:0}
-    /* 滚动入场 */
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease}
     .reveal.in{opacity:1;transform:none}
-    /* 多语言问候 */
-    .greet{
-      font-size:13px;letter-spacing:.14em;color:var(--accent);
-      margin-bottom:10px;font-weight:600;min-height:1.4em;
-      transition:opacity .35s ease;
-    }
+    .greet{font-size:13px;letter-spacing:.14em;color:var(--accent);margin-bottom:10px;font-weight:600;min-height:1.4em;transition:opacity .35s ease}
     .greet.fade{opacity:0}
     main{position:relative;z-index:1}
     footer{position:relative;z-index:1}
@@ -80,11 +59,20 @@
     .portrait{aspect-ratio:4/5;background:#ded9cf;position:relative;overflow:hidden;border-radius:2px}.portrait:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.28),transparent 45%,rgba(0,0,0,.08))}.portrait img{width:100%;height:100%;object-fit:cover;display:block}
     section{padding:105px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:42px}.section-head h2{font-size:clamp(42px,7vw,84px);line-height:1;letter-spacing:-.07em}.section-head p{color:var(--muted);font-size:13px}
     .about{display:grid;grid-template-columns:1fr 1fr;gap:60px}.about p{font-size:18px;letter-spacing:-.02em;max-width:560px;line-height:1.75;margin-bottom:20px}.facts{border-top:1px solid var(--line);padding-top:20px}.facts-group{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}.facts-item h3{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.facts-item p{font-size:15px;margin-bottom:0}
+    /* Elsewhere 卡片 */
+    .else-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .else-card{display:block;padding:26px 26px 48px;border:1px solid var(--line);border-radius:4px;transition:border-color .3s,background .3s,transform .3s;position:relative}
+    .else-card:hover,.else-card:focus-visible{border-color:var(--accent);background:rgba(255,255,255,.5);transform:translateY(-2px);outline:none}
+    .else-meta{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    .else-title{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
+    .else-desc{font-size:15px;color:var(--muted);line-height:1.6;margin:0}
+    .else-arrow{position:absolute;right:24px;bottom:22px;color:var(--accent);font-size:18px;transition:transform .3s}
+    .else-card:hover .else-arrow{transform:translateX(4px)}
     .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:28px}.social-link{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:4px;font-size:16px}.social-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}.social-link .arrow{float:right}
     .timeline{margin-top:28px}.timeline-item{margin-bottom:35px;border-left:2px solid var(--line);padding-left:28px;position:relative}.timeline-item:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:50%}.timeline-period{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.timeline-title{font-size:19px;font-weight:600;margin:5px 0}.timeline-desc{font-size:15px;color:var(--muted);line-height:1.6}
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact h2{font-size:clamp(50px,8vw,105px);line-height:.9;letter-spacing:-.09em}.contact-copy{color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:16px}.contact-copy a{color:var(--accent)}
     footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
-    @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav-side{gap:12px}.navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.menu{display:block}.lang-switch{font-size:11px}.lang-switch button{padding:4px 3px}.hero{grid-template-columns:1fr;gap:48px;padding:60px 0}.portrait{aspect-ratio:1}section{padding:72px 0}.section-head{display:block}.section-head p{margin-top:12px}.about,.contact{grid-template-columns:1fr;gap:36px}.facts-group,.links-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:10px}}
+    @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav-side{gap:12px}.navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.menu{display:block}.lang-switch{font-size:11px}.lang-switch button{padding:4px 3px}.hero{grid-template-columns:1fr;gap:48px;padding:60px 0}.portrait{aspect-ratio:1}section{padding:72px 0}.section-head{display:block}.section-head p{margin-top:12px}.about,.contact{grid-template-columns:1fr;gap:36px}.facts-group,.links-grid,.else-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:10px}}
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
@@ -94,11 +82,24 @@
 </head>
 <body>
   <div class="veil" id="veil"></div>
-  <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#essays" data-i18n="nav_essays">Essays</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div></nav></header>
+  <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#elsewhere" data-i18n="nav_essays">Elsewhere</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div></nav></header>
   <main id="top">
     <section class="hero wrap"><div><div class="greet" id="greet">你好</div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
     <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
-    <section id="essays"><div class="wrap"><div class="section-head"><h2 data-i18n="essays_title">Essays</h2><p data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div><p class="hero-copy" data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div></section>
+    <section id="elsewhere"><div class="wrap"><div class="section-head"><h2 data-i18n="else_title">Elsewhere</h2><p data-i18n="else_sub">Where else you can find me reading, thinking, and posting.</p></div><div class="else-grid">
+      <a class="else-card" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank" rel="noopener">
+        <div class="else-meta" data-i18n="else_r_meta">Reddit · u/Levenshaw</div>
+        <h3 class="else-title" data-i18n="else_r_title">Reddit</h3>
+        <p class="else-desc" data-i18n="else_r_desc">Long-form replies and slow conversations about language, culture, and translation.</p>
+        <span class="else-arrow">→</span>
+      </a>
+      <a class="else-card" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank" rel="noopener">
+        <div class="else-meta" data-i18n="else_x_meta">小红书 · Leven</div>
+        <h3 class="else-title" data-i18n="else_x_title">小红书</h3>
+        <p class="else-desc" data-i18n="else_x_desc">Short notes, snapshots, and fragments from life between three languages.</p>
+        <span class="else-arrow">→</span>
+      </a>
+    </div></div></section>
     <section id="work"><div class="wrap"><div class="section-head"><h2 data-i18n="work_title">Work Experience</h2><p data-i18n="work_sub">Professional background and projects.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="w1_period">2025.06 – Present</div><div class="timeline-title" data-i18n="w1_title">Freelance Translator | Moscow / Qingdao / St. Petersburg</div><div class="timeline-desc" data-i18n="w1_desc">Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w2_period">2023.07 – 2023.09</div><div class="timeline-title" data-i18n="w2_title">TAG Art Museum, Cultural &amp; Artistic Publicity Translation</div><div class="timeline-desc" data-i18n="w2_desc">Publicity Department Assistant</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w3_period">2022.10 – 2023.04</div><div class="timeline-title" data-i18n="w3_title">Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents</div><div class="timeline-desc" data-i18n="w3_desc">Foreign Trade Salesperson &amp; Translator</div></div></div></div></section>
    <section><div class="wrap"><div class="section-head"><h2 data-i18n="edu_title">Education</h2><p data-i18n="edu_sub">Academic background and training.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="e1_period">2024 – Present</div><div class="timeline-title" data-i18n="e1_title">МГУ ЭФ, Management</div><div class="timeline-desc" data-i18n="e1_desc">Undergraduate</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e2_period">2023 – 2024</div><div class="timeline-title" data-i18n="e2_title">МГУ Language School, Gap Year</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e3_period">2022 – 2023</div><div class="timeline-title" data-i18n="e3_title">Shandong University of Arts, Art Management and Art Theory Criticism</div><div class="timeline-desc" data-i18n="e3_desc">Undergraduate</div></div></div></div></section>
     <section id="contact"><div class="wrap contact"><div><div class="eyebrow" data-i18n="contact_eyebrow">Get in touch</div><h2 data-i18n="contact_title">Let's<br>connect.</h2></div><div><p class="contact-copy" data-i18n="contact_p1">If you have a translation request, want to collaborate on a project, or just want to chat about language and culture, I'd love to hear from you.</p><p class="contact-copy"><strong data-i18n="contact_email_label">Email:</strong> <a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p><div class="links-grid"><a class="social-link" href="https://t.me/matchax123" target="_blank">Telegram <span class="arrow">→</span></a><a class="social-link" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank">Reddit <span class="arrow">→</span></a><a class="social-link" href="https://x.com/LevenXiao82975" target="_blank">X <span class="arrow">→</span></a><a class="social-link" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank">小红书 <span class="arrow">→</span></a></div></div></div></section>
@@ -108,7 +109,7 @@
     const I18N = {
       en: {
         page_title: "Leven Shaw — Translator & Cultural Intelligence",
-        nav_about: "About", nav_essays: "Essays", nav_work: "Work", nav_contact: "Contact",
+        nav_about: "About", nav_essays: "Elsewhere", nav_work: "Work", nav_contact: "Contact",
         hero_eyebrow: "Translator & Cultural Intelligence Enthusiast",
         hero_subtitle: "Chinese–English–Russian Translator | Cultural Intelligence Enthusiast",
         hero_copy: "I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.",
@@ -121,7 +122,13 @@
         fact_cities: "Cities lived in", val_cities: "Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul",
         fact_langs: "Human Languages", val_langs: "Mandarin (native), English, Russian, French",
         fact_code: "Computer Languages", fact_email: "Email",
-        essays_title: "Essays", essays_sub: "Writing and thinking on language, culture, and translation.",
+        else_title: "Elsewhere", else_sub: "Where else you can find me reading, thinking, and posting.",
+        else_r_meta: "Reddit · u/Levenshaw",
+        else_r_title: "Reddit",
+        else_r_desc: "Long-form replies and slow conversations about language, culture, and translation.",
+        else_x_meta: "Xiaohongshu · Leven",
+        else_x_title: "Xiaohongshu",
+        else_x_desc: "Short notes, snapshots, and fragments from life between three languages.",
         work_title: "Work Experience", work_sub: "Professional background and projects.",
         w1_period: "2025.06 – Present",
         w1_title: "Freelance Translator | Moscow / Qingdao / St. Petersburg",
@@ -142,7 +149,7 @@
       },
       zh: {
         page_title: "Leven Shaw — 译者 & 跨文化情商",
-        nav_about: "关于", nav_essays: "随笔", nav_work: "经历", nav_contact: "联系",
+        nav_about: "关于", nav_essays: "别处", nav_work: "经历", nav_contact: "联系",
         hero_eyebrow: "译者 & 跨文化情商爱好者",
         hero_subtitle: "中 · 英 · 俄 译者 | 跨文化情商（CQ）爱好者",
         hero_copy: "我现在兼职做中英、中俄翻译。同时我对跨文化情商（CQ）也很感兴趣——不是专业研究者，只是个爱看书、爱写点东西的自学者，算半个民间哲学家。没错，我也是个语言学爱好者。",
@@ -155,7 +162,13 @@
         fact_cities: "居住过的城市", val_cities: "莫斯科、圣彼得堡、青岛、济南、北京、上海、伊斯坦布尔、首尔",
         fact_langs: "人类语言", val_langs: "普通话（母语）、英语、俄语、法语",
         fact_code: "计算机语言", fact_email: "邮箱",
-        essays_title: "随笔", essays_sub: "关于语言、文化与翻译的写作与思考。",
+        else_title: "别处", else_sub: "我在其他平台上的阅读、思考与碎片。",
+        else_r_meta: "Reddit · u/Levenshaw",
+        else_r_title: "Reddit",
+        else_r_desc: "关于语言、文化与翻译的长回复和慢对话。",
+        else_x_meta: "小红书 · Leven",
+        else_x_title: "小红书",
+        else_x_desc: "三种语言之间生活的短笔记、随手拍与碎片。",
         work_title: "工作经历", work_sub: "职业背景与项目。",
         w1_period: "2025.06 – 至今",
         w1_title: "自由译者 | 莫斯科 / 青岛 / 圣彼得堡",
@@ -176,7 +189,7 @@
       },
       ru: {
         page_title: "Leven Shaw — переводчик и культурный интеллект",
-        nav_about: "Обо мне", nav_essays: "Заметки", nav_work: "Опыт", nav_contact: "Контакты",
+        nav_about: "Обо мне", nav_essays: "В других местах", nav_work: "Опыт", nav_contact: "Контакты",
         hero_eyebrow: "Переводчик и любитель культурного интеллекта",
         hero_subtitle: "Переводчик (кит. – англ. – рус.) | Любитель культурного интеллекта",
         hero_copy: "Сейчас я подрабатываю переводчиком с китайского на английский и с китайского на русский. Ещё я увлекаюсь культурным интеллектом (CQ) — не профессиональный исследователь, просто самоучка, который много читает и пишет об этом в блоге, немного философ-любитель. И да, я ещё и любитель лингвистики.",
@@ -189,7 +202,13 @@
         fact_cities: "Города, где я жил", val_cities: "Москва, Санкт-Петербург, Циндао, Цзинань, Пекин, Шанхай, Стамбул, Сеул",
         fact_langs: "Человеческие языки", val_langs: "Китайский (родной), английский, русский, французский",
         fact_code: "Языки программирования", fact_email: "Эл. почта",
-        essays_title: "Заметки", essays_sub: "Тексты и размышления о языке, культуре и переводе.",
+        else_title: "В других местах", else_sub: "Где ещё меня можно найти: чтение, мысли, заметки.",
+        else_r_meta: "Reddit · u/Levenshaw",
+        else_r_title: "Reddit",
+        else_r_desc: "Длинные ответы и неспешные разговоры о языке, культуре и переводе.",
+        else_x_meta: "Сяохуншу · Leven",
+        else_x_title: "Сяохуншу",
+        else_x_desc: "Короткие заметки и фрагменты жизни между тремя языками.",
         work_title: "Опыт работы", work_sub: "Профессиональный опыт и проекты.",
         w1_period: "2025.06 – наст. время",
         w1_title: "Переводчик-фрилансер | Москва / Циндао / Санкт-Петербург",
@@ -210,7 +229,7 @@
       },
       fr: {
         page_title: "Leven Shaw — traducteur & intelligence culturelle",
-        nav_about: "À propos", nav_essays: "Essais", nav_work: "Parcours", nav_contact: "Contact",
+        nav_about: "À propos", nav_essays: "Ailleurs", nav_work: "Parcours", nav_contact: "Contact",
         hero_eyebrow: "Traducteur & passionné d'intelligence culturelle",
         hero_subtitle: "Traducteur chinois–anglais–russe | Passionné d'intelligence culturelle",
         hero_copy: "Je travaille actuellement à temps partiel comme traducteur chinois–anglais et chinois–russe. Je suis aussi passionné d'intelligence culturelle (CQ) — pas un chercheur professionnel, juste un autodidacte qui lit beaucoup et en parle dans son blog, une sorte de philosophe amateur. Et oui, je suis aussi un passionné de linguistique.",
@@ -223,7 +242,13 @@
         fact_cities: "Villes où j'ai vécu", val_cities: "Moscou, Saint-Pétersbourg, Qingdao, Jinan, Pékin, Shanghai, Istanbul, Séoul",
         fact_langs: "Langues humaines", val_langs: "Mandarin (langue maternelle), anglais, russe, français",
         fact_code: "Langages informatiques", fact_email: "E-mail",
-        essays_title: "Essais", essays_sub: "Écrits et réflexions sur la langue, la culture et la traduction.",
+        else_title: "Ailleurs", else_sub: "Où me retrouver : lectures, pensées, fragments.",
+        else_r_meta: "Reddit · u/Levenshaw",
+        else_r_title: "Reddit",
+        else_r_desc: "Réponses longues et conversations lentes sur la langue, la culture et la traduction.",
+        else_x_meta: "Xiaohongshu · Leven",
+        else_x_title: "Xiaohongshu",
+        else_x_desc: "Notes courtes et fragments d'une vie entre trois langues.",
         work_title: "Expérience professionnelle", work_sub: "Parcours professionnel et projets.",
         w1_period: "2025.06 – aujourd'hui",
         w1_title: "Traducteur indépendant | Moscou / Qingdao / Saint-Pétersbourg",
@@ -286,7 +311,7 @@
       link.addEventListener("click", function () { navLinks.classList.remove("open"); });
     });
 
-    /* ===== 1. 多语言问候轮播 ===== */
+    /* 多语言问候轮播 */
     (function(){
       const el = document.getElementById("greet");
       if(!el) return;
@@ -303,17 +328,17 @@
       }, 3000);
     })();
 
-    /* ===== 2. 光标跟随光晕 ===== */
+    /* 光标跟随光晕 */
     window.addEventListener("pointermove", function(e){
       document.body.style.setProperty("--mx", e.clientX + "px");
       document.body.style.setProperty("--my", e.clientY + "px");
     }, {passive:true});
 
-    /* ===== 3. 滚动入场 ===== */
+    /* 滚动入场 */
     (function(){
       if(!("IntersectionObserver" in window)) return;
       const targets = document.querySelectorAll(
-        "section .section-head, section .about, section .timeline, section .hero-copy, section .contact-copy, section .links-grid"
+        "section .section-head, section .about, section .timeline, section .else-grid, section .hero-copy, section .contact-copy, section .links-grid"
       );
       targets.forEach(function(t){ t.classList.add("reveal"); });
       const io = new IntersectionObserver(function(entries){
@@ -324,7 +349,7 @@
       targets.forEach(function(t){ io.observe(t); });
     })();
 
-    /* ===== 5. 加载揭幕 ===== */
+    /* 加载揭幕 */
     window.addEventListener("load", function(){
       const v = document.getElementById("veil");
       if(v){ requestAnimationFrame(function(){ v.classList.add("gone"); }); }
