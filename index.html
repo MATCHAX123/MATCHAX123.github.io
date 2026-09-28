@@ -7,11 +7,9 @@
   <meta name="theme-color" content="#f7eee9">
   <title>Leven Shaw — Translator &amp; Cultural Intelligence</title>
 
-  <!-- A. favicon（内联 SVG，砖红圆点 + L） -->
   <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7eee9'/%3E%3Ctext x='30' y='45' font-family='Inter,sans-serif' font-size='36' font-weight='800' fill='%23171717' text-anchor='middle'%3EL%3C/text%3E%3Ccircle cx='48' cy='42' r='5' fill='%23c85b3e'/%3E%3C/svg%3E">
 
-  <!-- H. 结构化数据（给 Google / Bing 看） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,10 +68,31 @@
       background:radial-gradient(560px circle at var(--mx,50%) var(--my,40%),
         rgba(200,91,62,.07), transparent 62%);
     }
-    .veil{position:fixed;inset:0;z-index:60;pointer-events:none;background:var(--paper);opacity:1;transition:opacity .9s ease}
-    .veil.gone{opacity:0}
 
-    /* 滚动进度线 */
+    /* ===== 进入动画遮罩 ===== */
+    .veil{
+      position:fixed;inset:0;z-index:60;pointer-events:none;
+      background:var(--paper);
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+      opacity:1;
+      transition:opacity .9s ease;
+    }
+    .veil.gone{opacity:0}
+    .veil-text{
+      font-size:clamp(15px, 1.6vw, 19px);
+      font-weight:500;
+      letter-spacing:-.005em;
+      color:var(--ink);
+      text-align:center;
+      margin:0;
+      opacity:0;
+      transform:translateY(7px);
+      transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+    .veil-text.show{opacity:1;transform:none}
+    .veil-text .name{color:var(--accent);font-weight:700}
+
     .progress{
       position:fixed;top:0;left:0;height:2px;width:100%;
       background:linear-gradient(90deg,var(--accent),rgba(200,91,62,.35));
@@ -83,7 +102,6 @@
     }
     .progress.idle{opacity:.28}
 
-    /* D. 语言切换淡入淡出 */
     [data-i18n]{transition:opacity .2s ease}
     body.lang-fade [data-i18n]{opacity:0}
 
@@ -101,7 +119,6 @@
     .brand{font-weight:800;letter-spacing:-.04em;font-size:20px}
     .brand span{color:var(--accent)}
 
-    /* 导航栏里的小火柴人 */
     .kid-wrap{display:inline-flex;align-items:center;color:var(--ink);line-height:0;opacity:.85}
     .kid-fire{width:56px;height:28px;display:block;overflow:visible}
     .kf-line{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
@@ -169,7 +186,6 @@
     .button:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-1px)}
     .button:hover:after{left:100%}
 
-    /* G. 头像微视差 */
     .portrait{
       aspect-ratio:4/5;background:#ded9cf;position:relative;overflow:hidden;border-radius:2px;
       transform:translate3d(calc(var(--px,0) * -3px), calc(var(--py,0) * -3px), 0);
@@ -220,7 +236,6 @@
     .social-link .arrow{float:right;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
     .social-link:hover .arrow{transform:translateX(4px)}
 
-    /* E. 时间线编号 */
     .timeline{margin-top:28px;counter-reset:tl}
     .timeline-item{
       counter-increment:tl;
@@ -256,7 +271,6 @@
     footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line)}
     .footer-right{display:flex;align-items:center;gap:14px}
 
-    /* C. 分享按钮 */
     .share-btn{
       background:none;border:1px solid var(--line);border-radius:50%;
       width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
@@ -266,7 +280,6 @@
     .share-btn:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
     .share-btn svg{width:14px;height:14px}
 
-    /* 回到顶部 */
     .to-top{
       position:fixed;right:24px;bottom:24px;
       width:42px;height:42px;border-radius:50%;
@@ -283,7 +296,106 @@
     .to-top:hover{border-color:var(--accent);background:#fff}
     .to-top svg{width:16px;height:16px}
 
-    /* Toast */
+    /* 机器人按钮 */
+    .bot-btn{
+      position:fixed;right:24px;bottom:78px;
+      width:42px;height:42px;border-radius:50%;
+      background:rgba(247,238,233,.9);border:1px solid var(--line);
+      color:var(--ink);cursor:pointer;padding:0;
+      display:flex;align-items:center;justify-content:center;
+      transition:color .25s ease, border-color .25s ease, transform .25s ease, background .25s ease;
+      z-index:15;
+      backdrop-filter:blur(10px) saturate(140%);
+      -webkit-backdrop-filter:blur(10px) saturate(140%);
+    }
+    .bot-btn:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+    .bot-btn svg{width:20px;height:20px}
+    .bot-btn .pulse{
+      position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 0 rgba(200,91,62,.5);
+      animation:pulse 2.4s ease-out infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(200,91,62,.5)}
+      70%{box-shadow:0 0 0 8px rgba(200,91,62,0)}
+      100%{box-shadow:0 0 0 0 rgba(200,91,62,0)}
+    }
+
+    /* 机器人面板 */
+    .bot-panel{
+      position:fixed;right:24px;bottom:132px;
+      width:340px;max-width:calc(100% - 32px);
+      height:480px;max-height:calc(100vh - 160px);
+      background:linear-gradient(180deg,#fdf8f6,#f9efec);
+      border:1px solid var(--line);border-radius:10px;
+      box-shadow:0 28px 70px -22px rgba(0,0,0,.28);
+      display:flex;flex-direction:column;
+      opacity:0;pointer-events:none;
+      transform:translateY(12px) scale(.985);
+      transform-origin:bottom right;
+      transition:opacity .28s ease, transform .28s cubic-bezier(.2,.7,.2,1);
+      z-index:18;
+      overflow:hidden;
+    }
+    .bot-panel.open{opacity:1;pointer-events:auto;transform:none}
+    .bot-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:13px 16px;border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.45);flex-shrink:0;
+    }
+    .bot-head-title{font-size:13px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+    .bot-head-title .dot{width:7px;height:7px;border-radius:50%;background:#7bb37e;box-shadow:0 0 0 3px rgba(123,179,126,.18)}
+    .bot-close{background:none;border:0;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:2px 6px;transition:color .2s}
+    .bot-close:hover{color:var(--accent)}
+
+    .bot-body{
+      flex:1;overflow-y:auto;padding:16px 16px 8px;
+      display:flex;flex-direction:column;gap:10px;
+      scroll-behavior:smooth;
+    }
+    .bot-body::-webkit-scrollbar{width:6px}
+    .bot-body::-webkit-scrollbar-thumb{background:rgba(200,91,62,.2);border-radius:3px;border:0}
+    .msg{
+      max-width:84%;padding:10px 13px;border-radius:12px;
+      font-size:14px;line-height:1.55;word-wrap:break-word;
+      animation:msgIn .32s cubic-bezier(.2,.7,.2,1);
+    }
+    @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start;color:#3a3833}
+    .msg.me{background:var(--accent);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+    .msg.typing{color:var(--muted);font-style:italic;letter-spacing:.2em}
+
+    .bot-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px;flex-shrink:0}
+    .bot-chip{
+      background:none;border:1px solid var(--line);border-radius:999px;
+      padding:6px 12px;font-size:12px;color:var(--muted);cursor:pointer;
+      transition:border-color .22s, color .22s, background .22s;
+      font:inherit;font-family:inherit;
+    }
+    .bot-chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.5)}
+
+    .bot-foot{
+      display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line);
+      background:rgba(255,255,255,.45);flex-shrink:0;
+    }
+    .bot-input{
+      flex:1;border:1px solid var(--line);border-radius:999px;
+      padding:9px 14px;font:inherit;font-family:inherit;font-size:14px;background:#fff;
+      color:var(--ink);outline:none;transition:border-color .22s;
+      min-width:0;
+    }
+    .bot-input:focus{border-color:var(--accent)}
+    .bot-send{
+      width:36px;height:36px;border-radius:50%;border:0;
+      background:var(--accent);color:#fff;cursor:pointer;padding:0;
+      display:flex;align-items:center;justify-content:center;
+      transition:transform .2s, background .2s;
+      flex-shrink:0;
+    }
+    .bot-send:hover{transform:scale(1.06)}
+    .bot-send svg{width:15px;height:15px}
+
     .toast{
       position:fixed;left:50%;bottom:36px;
       transform:translate(-50%,12px);
@@ -316,21 +428,37 @@
       .facts-group,.links-grid,.essay-grid{grid-template-columns:1fr}
       footer{flex-direction:column;gap:12px}
       .to-top{width:38px;height:38px;right:16px;bottom:16px}
+      .bot-btn{width:38px;height:38px;right:16px;bottom:64px}
+      .bot-btn svg{width:18px;height:18px}
+      .bot-panel{
+        right:0;left:0;bottom:0;
+        width:auto;max-width:100%;
+        height:78vh;max-height:78vh;
+        border-radius:14px 14px 0 0;
+        border-bottom:0;
+        transform:translateY(100%);
+      }
+      .bot-panel.open{transform:none}
     }
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
       .veil{display:none}
-      .kf-kid,.kf-zzz text{animation:none}
+      .kf-kid,.kf-zzz text,.bot-btn .pulse{animation:none}
       .portrait img{transition:none}
       .button:after{display:none}
       [data-i18n]{transition:none}
+      .msg{animation:none}
     }
   </style>
 </head>
 <body>
+  <!-- 进入动画遮罩 -->
+  <div class="veil" id="veil">
+    <p class="veil-text" id="veilText">Hello everyone, I'm <span class="name">Leven Shaw</span>.</p>
+  </div>
+
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="veil" id="veil"></div>
 
   <header><nav class="wrap">
     <div class="nav-left">
@@ -421,7 +549,6 @@
     </div>
   </footer>
 
-  <!-- 回到顶部 -->
   <button type="button" class="to-top" id="toTop" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 19V5"/>
@@ -429,7 +556,35 @@
     </svg>
   </button>
 
-  <!-- Toast -->
+  <button type="button" class="bot-btn" id="botBtn" aria-label="Open assistant" title="Ask Leven's assistant">
+    <span class="pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="6" width="14" height="11" rx="3"/>
+      <circle cx="10" cy="11.5" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="14" cy="11.5" r="1.2" fill="currentColor" stroke="none"/>
+      <line x1="12" y1="6" x2="12" y2="3.5"/>
+      <circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </button>
+
+  <div class="bot-panel" id="botPanel" role="dialog" aria-modal="false" aria-labelledby="botTitle">
+    <div class="bot-head">
+      <div class="bot-head-title" id="botTitle"><span class="dot"></span>Leven's little robot</div>
+      <button type="button" class="bot-close" id="botClose" aria-label="Close">×</button>
+    </div>
+    <div class="bot-body" id="botBody"></div>
+    <div class="bot-chips" id="botChips"></div>
+    <form class="bot-foot" id="botForm" autocomplete="off">
+      <input type="text" class="bot-input" id="botInput" placeholder="Ask something…" aria-label="Message">
+      <button type="submit" class="bot-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M13 6l6 6-6 6"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+
   <div class="toast" id="toast" aria-live="polite"></div>
 
   <script>
@@ -621,9 +776,9 @@
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
       try { localStorage.setItem("ls-lang", lang); } catch (e) {}
+      if (window.__botRefresh) window.__botRefresh();
     }
 
-    /* D. 带淡入淡出的语言切换 */
     function applyLang(lang, animate) {
       if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
       if (animate && !switching && lang !== currentLang) {
@@ -661,7 +816,6 @@
       link.addEventListener("click", function () { navLinks.classList.remove("open"); });
     });
 
-    /* B. 标签页失焦换标题 */
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) {
         document.title = "Come back anytime · Leven";
@@ -738,7 +892,7 @@
       }, 3000);
     })();
 
-    /* 光标跟随光晕 + G. 头像微视差（共用 pointermove） */
+    /* 光标跟随光晕 + 头像微视差 */
     (function(){
       let px = 0, py = 0, rafPending = false;
       window.addEventListener("pointermove", function(e){
@@ -772,10 +926,33 @@
       targets.forEach(function(t){ io.observe(t); });
     })();
 
-    /* 加载揭幕 */
+    /* 进入动画：文字先淡入 → 整层再淡出 → 移除 */
     window.addEventListener("load", function(){
       const v = document.getElementById("veil");
-      if(v){ requestAnimationFrame(function(){ v.classList.add("gone"); }); }
+      const t = document.getElementById("veilText");
+      if(!v) return;
+
+      // 若用户开启了“减少动态效果”，直接移除，不做动画
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        if (v.parentNode) v.parentNode.removeChild(v);
+        return;
+      }
+
+      // 1) 文字淡入
+      requestAnimationFrame(function(){
+        if (t) t.classList.add("show");
+      });
+
+      // 2) 约 1.5 秒后整层淡出
+      setTimeout(function(){
+        v.classList.add("gone");
+      }, 1500);
+
+      // 3) 淡出完成后从 DOM 里彻底移除
+      setTimeout(function(){
+        if (v.parentNode) v.parentNode.removeChild(v);
+      }, 2500);
     });
 
     /* 回到顶部 */
@@ -794,7 +971,7 @@
       update();
     })();
 
-    /* C. 分享按钮 */
+    /* 分享按钮 */
     (function(){
       const btn = document.getElementById("shareBtn");
       const toast = document.getElementById("toast");
@@ -825,6 +1002,265 @@
           showToast("Copy not supported");
         }
       });
+    })();
+
+    /* ============================================================
+       Leven 的小助手 —— 本地机器人
+       ============================================================ */
+    (function(){
+      const KB = [
+        {
+          id: "languages",
+          keywords: ["language","languages","speak","mandarin","chinese","russian","english","french",
+                     "语言","会说","说什么","普通话","俄语","英语","法语",
+                     "язык","языки","китайский","русский",
+                     "langue","langues","parle","parlez"],
+          q: { en: "What languages do you speak?", zh: "你会哪些语言？", ru: "Какие языки вы знаете?", fr: "Quelles langues parlez-vous ?" },
+          a: {
+            en: "I work in Mandarin (native), English, Russian, and French — mostly zh→en and zh→ru.",
+            zh: "我使用普通话（母语）、英语、俄语和法语，主要做中英和中俄这两个方向。",
+            ru: "Я работаю с китайским (родной), английским, русским и французским — в основном кит.→англ. и кит.→рус.",
+            fr: "Je travaille en mandarin (langue maternelle), anglais, russe et français — surtout chinois→anglais et chinois→russe."
+          }
+        },
+        {
+          id: "services",
+          keywords: ["service","services","what do you do","translation","translate","interpreting","localization","localisation","legal","notarization","exhibition",
+                     "接单","做哪些","翻译什么","服务","公证","口译","本地化","展会","法律",
+                     "услуг","перевод","устный","нотариальный","локализация",
+                     "service","traduction","interprétation","localisation","juridique"],
+          q: { en: "What services do you offer?", zh: "你提供哪些服务？", ru: "Какие услуги вы оказываете?", fr: "Quels services proposez-vous ?" },
+          a: {
+            en: "Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, and website/app localization.",
+            zh: "法律与公证翻译、B2B 展会口译、商务谈判口译，以及网站/App 本地化。",
+            ru: "Юридический и нотариальный перевод, устный перевод на B2B-выставках, перевод деловых переговоров, локализация сайтов и приложений.",
+            fr: "Traduction juridique et notariée, interprétation en salon B2B, interprétation de négociations commerciales, et localisation de sites/apps."
+          }
+        },
+        {
+          id: "contact",
+          keywords: ["contact","email","reach","mail","write",
+                     "联系","邮箱","怎么联系","发邮件","咨询","邮件",
+                     "контакт","почта","написать","связаться",
+                     "contact","email","joindre","écrire"],
+          q: { en: "How can I contact you?", zh: "怎么联系你？", ru: "Как с вами связаться?", fr: "Comment vous contacter ?" },
+          a: {
+            en: "Email is best: levenxiao@gmail.com — or find me on Telegram, Reddit, X, or Xiaohongshu (links in the Contact section).",
+            zh: "发邮件最方便：levenxiao@gmail.com —— 也可以在 Telegram、Reddit、X 或小红书上找到我（链接在「联系」区）。",
+            ru: "Лучше всего по почте: levenxiao@gmail.com — или найдите меня в Telegram, Reddit, X или Сяохуншу (ссылки в разделе «Контакты»).",
+            fr: "Le mieux est par e-mail : levenxiao@gmail.com — ou retrouvez-moi sur Telegram, Reddit, X ou Xiaohongshu (liens dans la section Contact)."
+          }
+        },
+        {
+          id: "location",
+          keywords: ["where","location","city","based","live","moscow","qingdao","shanghai","st petersburg",
+                     "哪里","在哪","城市","住哪","莫斯科","青岛","上海","圣彼得堡",
+                     "где","город","живёте","москва",
+                     "où","ville","habitez","moscou"],
+          q: { en: "Where are you based?", zh: "你在哪里？", ru: "Где вы находитесь?", fr: "Où êtes-vous basé ?" },
+          a: {
+            en: "Between Qingdao, Shanghai, and Moscow — depending on the season and the project.",
+            zh: "常驻于青岛、上海与莫斯科之间——看季节和项目。",
+            ru: "Между Циндао, Шанхаем и Москвой — в зависимости от сезона и проекта.",
+            fr: "Entre Qingdao, Shanghai et Moscou — selon la saison et le projet."
+          }
+        },
+        {
+          id: "education",
+          keywords: ["education","study","university","school","degree","msu","mgu","shandong",
+                     "教育","学习","大学","学校","学位","莫斯科国立","山艺",
+                     "образование","учёба","университет","мгу",
+                     "études","université","formation","école"],
+          q: { en: "What's your background?", zh: "你的教育背景？", ru: "Ваше образование?", fr: "Votre parcours ?" },
+          a: {
+            en: "I studied art management at Shandong University of Arts, and I'm now at MSU (Faculty of Economics, Management) in Moscow.",
+            zh: "我本科在山东艺术学院学艺术管理，现在在莫斯科国立大学经济系读管理学。",
+            ru: "Я учился арт-менеджменту в Шаньдунском университете искусств, сейчас учусь в МГУ (экономический факультет, менеджмент).",
+            fr: "J'ai étudié la gestion de l'art à l'Université des arts du Shandong, et je suis actuellement à l'Université d'État de Moscou (Faculté d'économie, Management)."
+          }
+        },
+        {
+          id: "blog",
+          keywords: ["blog","essay","essays","write","writing","reddit","xiaohongshu","xhslink",
+                     "博客","文章","随笔","写作","小红书","红书",
+                     "блог","заметки","статьи","сяохуншу",
+                     "blog","essais","écrire","xiaohongshu"],
+          q: { en: "Where do you write?", zh: "你在哪里写作？", ru: "Где вы пишете?", fr: "Où écrivez-vous ?" },
+          a: {
+            en: "My writing lives on Reddit and Xiaohongshu — the cards in the Essays section link straight there.",
+            zh: "我的写作在 Reddit 和小红书上——「随笔」区的两张卡片直接链过去。",
+            ru: "Мои тексты — на Reddit и Сяохуншу. Карточки в разделе «Заметки» ведут прямо туда.",
+            fr: "Mes écrits sont sur Reddit et Xiaohongshu — les cartes de la section Essais y mènent directement."
+          }
+        },
+        {
+          id: "hire",
+          keywords: ["hire","work with","quote","price","rate","cost","available","booking","collaborate",
+                     "合作","报价","价格","收费","接活","接单","预约",
+                     "заказ","цена","стоимость","работать","нанять",
+                     "tarif","prix","devis","collaborer","engager"],
+          q: { en: "Can I hire you?", zh: "可以找你合作吗？", ru: "Можно вас нанять?", fr: "Puis-je vous engager ?" },
+          a: {
+            en: "Yes — send me a short brief (languages, volume, deadline) to levenxiao@gmail.com and I'll get back to you with a quote.",
+            zh: "可以——把需求简短说明（语言方向、字数/时长、截止时间）发到 levenxiao@gmail.com，我会回你报价。",
+            ru: "Да — пришлите краткое описание (языки, объём, срок) на levenxiao@gmail.com, и я отвечу с расчётом.",
+            fr: "Oui — envoyez un court brief (langues, volume, délai) à levenxiao@gmail.com et je reviendrai avec un devis."
+          }
+        },
+        {
+          id: "hi",
+          keywords: ["hi","hello","hey","你好","嗨","哈喽","привет","здравствуйте","bonjour","salut","coucou"],
+          q: null,
+          a: {
+            en: "Hi! I'm Leven's little assistant. Ask me anything about his work — or pick one of the questions below.",
+            zh: "嗨！我是 Leven 的小助手。有什么想问的，直接说，或者点下面的快捷问题。",
+            ru: "Привет! Я маленький ассистент Leven. Спрашивайте что угодно о его работе — или выберите вопрос ниже.",
+            fr: "Salut ! Je suis le petit assistant de Leven. Posez-moi vos questions — ou choisissez ci-dessous."
+          }
+        }
+      ];
+
+      const FALLBACK = {
+        en: "I don't know that one yet. Try asking about languages, services, or contact — or just email Leven directly: levenxiao@gmail.com",
+        zh: "这个我还不熟。你可以问我语言能力、服务范围或联系方式——或者直接发邮件给 Leven：levenxiao@gmail.com",
+        ru: "Пока не знаю. Спросите о языках, услугах или контактах — или напишите Leven напрямую: levenxiao@gmail.com",
+        fr: "Je ne sais pas encore. Demandez-moi les langues, les services ou le contact — ou écrivez directement à Leven : levenxiao@gmail.com"
+      };
+
+      const WELCOME = {
+        en: "Hi! I'm Leven's little assistant. What would you like to know?",
+        zh: "嗨！我是 Leven 的小助手。有什么想问的？",
+        ru: "Привет! Я маленький ассистент Leven. Что хотите узнать?",
+        fr: "Salut ! Je suis le petit assistant de Leven. Que voulez-vous savoir ?"
+      };
+
+      const INPUT_PLACEHOLDER = {
+        en: "Ask something…", zh: "问点什么…", ru: "Спросите что-нибудь…", fr: "Posez une question…"
+      };
+
+      const CHIP_IDS = ["languages", "services", "contact"];
+
+      const panel = document.getElementById("botPanel");
+      const btn = document.getElementById("botBtn");
+      const closeBtn = document.getElementById("botClose");
+      const body = document.getElementById("botBody");
+      const chips = document.getElementById("botChips");
+      const form = document.getElementById("botForm");
+      const input = document.getElementById("botInput");
+      if (!panel || !btn) return;
+
+      let greeted = false;
+
+      function pick(obj) {
+        if (!obj) return "";
+        return obj[currentLang] || obj.en || "";
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function(c){
+          return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c];
+        });
+      }
+
+      function appendMsg(role, text) {
+        const el = document.createElement("div");
+        el.className = "msg " + role;
+        el.innerHTML = text;
+        body.appendChild(el);
+        body.scrollTop = body.scrollHeight;
+        return el;
+      }
+
+      function match(input) {
+        const s = (input || "").toLowerCase().trim();
+        if (!s) return null;
+        let best = null, bestScore = 0;
+        KB.forEach(function(item){
+          let score = 0;
+          item.keywords.forEach(function(k){
+            if (s.indexOf(k.toLowerCase()) !== -1) score++;
+          });
+          if (score > bestScore) { bestScore = score; best = item; }
+        });
+        return bestScore > 0 ? best : null;
+      }
+
+      function respond(text, matched) {
+        const t = (text || "").trim();
+        if (!t) return;
+        appendMsg("me", escapeHtml(t));
+        input.value = "";
+        const typing = appendMsg("bot typing", "···");
+        setTimeout(function(){
+          if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+          const item = matched || match(t);
+          const answer = item ? pick(item.a) : pick(FALLBACK);
+          appendMsg("bot", answer);
+        }, 480);
+      }
+
+      function renderChips() {
+        chips.innerHTML = "";
+        CHIP_IDS.forEach(function(id){
+          const item = KB.filter(function(x){ return x.id === id; })[0];
+          if (!item || !item.q) return;
+          const chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "bot-chip";
+          chip.textContent = pick(item.q);
+          chip.addEventListener("click", function(){ respond(pick(item.q), item); });
+          chips.appendChild(chip);
+        });
+      }
+
+      function refresh() {
+        if (input) input.placeholder = pick(INPUT_PLACEHOLDER);
+        renderChips();
+      }
+      window.__botRefresh = refresh;
+
+      function open() {
+        panel.classList.add("open");
+        btn.setAttribute("aria-label", "Close assistant");
+        refresh();
+        if (!greeted) {
+          greeted = true;
+          setTimeout(function(){
+            appendMsg("bot", pick(WELCOME));
+            body.scrollTop = body.scrollHeight;
+          }, 300);
+        }
+        setTimeout(function(){ if (input) input.focus(); }, 340);
+      }
+
+      function close() {
+        panel.classList.remove("open");
+        btn.setAttribute("aria-label", "Open assistant");
+        btn.focus();
+      }
+
+      btn.addEventListener("click", function(){
+        if (panel.classList.contains("open")) close();
+        else open();
+      });
+      closeBtn.addEventListener("click", close);
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        respond(input.value);
+      });
+
+      document.addEventListener("keydown", function(e){
+        if (e.key === "Escape" && panel.classList.contains("open")) close();
+      });
+
+      document.addEventListener("click", function(e){
+        if (!panel.classList.contains("open")) return;
+        if (panel.contains(e.target) || btn.contains(e.target)) return;
+        close();
+      }, true);
+
+      refresh();
     })();
   </script>
 </body>
