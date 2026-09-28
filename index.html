@@ -69,7 +69,6 @@
         rgba(200,91,62,.07), transparent 62%);
     }
 
-    /* ===== 进入动画遮罩 ===== */
     .veil{
       position:fixed;inset:0;z-index:60;pointer-events:none;
       background:var(--paper);
@@ -80,9 +79,9 @@
     }
     .veil.gone{opacity:0}
     .veil-text{
-      font-size:clamp(15px, 1.6vw, 19px);
-      font-weight:500;
-      letter-spacing:-.005em;
+      font-size:clamp(26px, 3.2vw, 40px);
+      font-weight:600;
+      letter-spacing:-.01em;
       color:var(--ink);
       text-align:center;
       margin:0;
@@ -208,9 +207,11 @@
     .facts-item h3{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
     .facts-item p{font-size:15px;margin-bottom:0}
 
+    /* ===== Essays 卡片（带图标） ===== */
     .essay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .essay-card{
-      display:block;padding:26px 26px 48px;border:1px solid var(--line);border-radius:4px;
+      display:flex;gap:18px;align-items:flex-start;
+      padding:26px 26px 48px;border:1px solid var(--line);border-radius:4px;
       position:relative;
       transition:border-color .35s ease, background .35s ease, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
     }
@@ -220,6 +221,14 @@
       box-shadow:0 14px 36px -18px rgba(200,91,62,.35);
       outline:none;
     }
+    .essay-icon{
+      width:38px;height:38px;flex-shrink:0;
+      color:var(--accent);
+      transition:transform .35s cubic-bezier(.2,.7,.2,1);
+    }
+    .essay-icon svg{width:100%;height:100%;display:block}
+    .essay-card:hover .essay-icon{transform:scale(1.06) rotate(-2deg)}
+    .essay-content{flex:1;min-width:0}
     .essay-meta{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
     .essay-title{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
     .essay-desc{font-size:15px;color:var(--muted);line-height:1.6;margin:0}
@@ -296,7 +305,6 @@
     .to-top:hover{border-color:var(--accent);background:#fff}
     .to-top svg{width:16px;height:16px}
 
-    /* 机器人按钮 */
     .bot-btn{
       position:fixed;right:24px;bottom:78px;
       width:42px;height:42px;border-radius:50%;
@@ -322,7 +330,6 @@
       100%{box-shadow:0 0 0 0 rgba(200,91,62,0)}
     }
 
-    /* 机器人面板 */
     .bot-panel{
       position:fixed;right:24px;bottom:132px;
       width:340px;max-width:calc(100% - 32px);
@@ -453,7 +460,6 @@
   </style>
 </head>
 <body>
-  <!-- 进入动画遮罩 -->
   <div class="veil" id="veil">
     <p class="veil-text" id="veilText">Hello everyone, I'm <span class="name">Leven Shaw</span>.</p>
   </div>
@@ -516,15 +522,40 @@
     <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
     <section id="essays"><div class="wrap"><div class="section-head"><h2 data-i18n="essays_title">Essays</h2><p data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div><div class="essay-grid">
       <a class="essay-card" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank" rel="noopener">
-        <div class="essay-meta" data-i18n="essay_r_meta">Reddit · u/Levenshaw</div>
-        <h3 class="essay-title" data-i18n="essay_r_title">Reddit</h3>
-        <p class="essay-desc" data-i18n="essay_r_desc">Long-form replies and slow conversations about language, culture, and translation.</p>
+        <span class="essay-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="13.5" rx="8.5" ry="7"/>
+            <line x1="12" y1="6.5" x2="12" y2="3.6"/>
+            <circle cx="12" cy="3" r="1"/>
+            <circle cx="3.5" cy="13" r="1.8"/>
+            <circle cx="20.5" cy="13" r="1.8"/>
+            <circle cx="9" cy="12.5" r="1.3" fill="currentColor"/>
+            <circle cx="15" cy="12.5" r="1.3" fill="currentColor"/>
+            <path d="M8.5 16 Q12 18.5 15.5 16"/>
+          </svg>
+        </span>
+        <span class="essay-content">
+          <span class="essay-meta" data-i18n="essay_r_meta">Reddit · u/Levenshaw</span>
+          <span class="essay-title" data-i18n="essay_r_title">Reddit</span>
+          <span class="essay-desc" data-i18n="essay_r_desc">Long-form replies and slow conversations about language, culture, and translation.</span>
+        </span>
         <span class="essay-arrow">→</span>
       </a>
       <a class="essay-card" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank" rel="noopener">
-        <div class="essay-meta" data-i18n="essay_x_meta">小红书 · Leven</div>
-        <h3 class="essay-title" data-i18n="essay_x_title">小红书</h3>
-        <p class="essay-desc" data-i18n="essay_x_desc">Short notes, snapshots, and fragments from life between three languages.</p>
+        <span class="essay-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4.5" y="3" width="15" height="18" rx="2.5"/>
+            <line x1="4.5" y1="3" x2="4.5" y2="21"/>
+            <line x1="9" y1="8" x2="16" y2="8"/>
+            <line x1="9" y1="12" x2="16" y2="12"/>
+            <line x1="9" y1="16" x2="13.5" y2="16"/>
+          </svg>
+        </span>
+        <span class="essay-content">
+          <span class="essay-meta" data-i18n="essay_x_meta">小红书 · Leven</span>
+          <span class="essay-title" data-i18n="essay_x_title">小红书</span>
+          <span class="essay-desc" data-i18n="essay_x_desc">Short notes, snapshots, and fragments from life between three languages.</span>
+        </span>
         <span class="essay-arrow">→</span>
       </a>
     </div></div></section>
@@ -824,7 +855,6 @@
       }
     });
 
-    /* 导航栏小火柴人 */
     (function(){
       const wrap = document.getElementById("kidWrap");
       if (!wrap) return;
@@ -857,7 +887,6 @@
       });
     })();
 
-    /* 顶部滚动进度线 */
     (function(){
       const bar = document.getElementById("progress");
       if (!bar) return;
@@ -875,7 +904,6 @@
       update();
     })();
 
-    /* 多语言问候轮播 */
     (function(){
       const el = document.getElementById("greet");
       if(!el) return;
@@ -892,7 +920,6 @@
       }, 3000);
     })();
 
-    /* 光标跟随光晕 + 头像微视差 */
     (function(){
       let px = 0, py = 0, rafPending = false;
       window.addEventListener("pointermove", function(e){
@@ -911,7 +938,6 @@
       }, {passive:true});
     })();
 
-    /* 滚动入场 */
     (function(){
       if(!("IntersectionObserver" in window)) return;
       const targets = document.querySelectorAll(
@@ -926,36 +952,30 @@
       targets.forEach(function(t){ io.observe(t); });
     })();
 
-    /* 进入动画：文字先淡入 → 整层再淡出 → 移除 */
     window.addEventListener("load", function(){
       const v = document.getElementById("veil");
       const t = document.getElementById("veilText");
       if(!v) return;
 
-      // 若用户开启了“减少动态效果”，直接移除，不做动画
       const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduce) {
         if (v.parentNode) v.parentNode.removeChild(v);
         return;
       }
 
-      // 1) 文字淡入
       requestAnimationFrame(function(){
         if (t) t.classList.add("show");
       });
 
-      // 2) 约 1.5 秒后整层淡出
       setTimeout(function(){
         v.classList.add("gone");
       }, 1500);
 
-      // 3) 淡出完成后从 DOM 里彻底移除
       setTimeout(function(){
         if (v.parentNode) v.parentNode.removeChild(v);
       }, 2500);
     });
 
-    /* 回到顶部 */
     (function(){
       const btn = document.getElementById("toTop");
       if (!btn) return;
@@ -971,7 +991,6 @@
       update();
     })();
 
-    /* 分享按钮 */
     (function(){
       const btn = document.getElementById("shareBtn");
       const toast = document.getElementById("toast");
