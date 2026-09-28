@@ -20,6 +20,7 @@
       font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       line-height:1.55;
     }
+    /* 斜向反射光 */
     body::before{
       content:"";
       position:fixed;
@@ -32,6 +33,33 @@
         rgba(255,255,255,0) 72%,
         rgba(255,255,255,.3) 100%);
     }
+    /* 光标跟随光晕 */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:radial-gradient(560px circle at var(--mx,50%) var(--my,40%),
+        rgba(200,91,62,.07), transparent 62%);
+    }
+    /* 加载揭幕 */
+    .veil{
+      position:fixed;inset:0;z-index:60;pointer-events:none;
+      background:var(--paper);
+      opacity:1;transition:opacity .9s ease;
+    }
+    .veil.gone{opacity:0}
+    /* 滚动入场 */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease}
+    .reveal.in{opacity:1;transform:none}
+    /* 多语言问候 */
+    .greet{
+      font-size:13px;letter-spacing:.14em;color:var(--accent);
+      margin-bottom:10px;font-weight:600;min-height:1.4em;
+      transition:opacity .35s ease;
+    }
+    .greet.fade{opacity:0}
     main{position:relative;z-index:1}
     footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
@@ -57,13 +85,18 @@
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact h2{font-size:clamp(50px,8vw,105px);line-height:.9;letter-spacing:-.09em}.contact-copy{color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:16px}.contact-copy a{color:var(--accent)}
     footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
     @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav-side{gap:12px}.navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.menu{display:block}.lang-switch{font-size:11px}.lang-switch button{padding:4px 3px}.hero{grid-template-columns:1fr;gap:48px;padding:60px 0}.portrait{aspect-ratio:1}section{padding:72px 0}.section-head{display:block}.section-head p{margin-top:12px}.about,.contact{grid-template-columns:1fr;gap:36px}.facts-group,.links-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:10px}}
-    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .veil{display:none}
+    }
   </style>
 </head>
 <body>
+  <div class="veil" id="veil"></div>
   <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#essays" data-i18n="nav_essays">Essays</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div></nav></header>
   <main id="top">
-    <section class="hero wrap"><div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
+    <section class="hero wrap"><div><div class="greet" id="greet">你好</div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
     <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
     <section id="essays"><div class="wrap"><div class="section-head"><h2 data-i18n="essays_title">Essays</h2><p data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div><p class="hero-copy" data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div></section>
     <section id="work"><div class="wrap"><div class="section-head"><h2 data-i18n="work_title">Work Experience</h2><p data-i18n="work_sub">Professional background and projects.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="w1_period">2025.06 – Present</div><div class="timeline-title" data-i18n="w1_title">Freelance Translator | Moscow / Qingdao / St. Petersburg</div><div class="timeline-desc" data-i18n="w1_desc">Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w2_period">2023.07 – 2023.09</div><div class="timeline-title" data-i18n="w2_title">TAG Art Museum, Cultural &amp; Artistic Publicity Translation</div><div class="timeline-desc" data-i18n="w2_desc">Publicity Department Assistant</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w3_period">2022.10 – 2023.04</div><div class="timeline-title" data-i18n="w3_title">Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents</div><div class="timeline-desc" data-i18n="w3_desc">Foreign Trade Salesperson &amp; Translator</div></div></div></div></section>
@@ -251,6 +284,50 @@
     menu.addEventListener("click", function () { navLinks.classList.toggle("open"); });
     navLinks.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () { navLinks.classList.remove("open"); });
+    });
+
+    /* ===== 1. 多语言问候轮播 ===== */
+    (function(){
+      const el = document.getElementById("greet");
+      if(!el) return;
+      const words = ["你好","Hola","Привет","Bonjour","こんにちは","Ciao",
+                     "안녕하세요","Merhaba","Olá","Hallo","नमस्ते","Γεια σου"];
+      let i = 0;
+      setInterval(function(){
+        el.classList.add("fade");
+        setTimeout(function(){
+          i = (i + 1) % words.length;
+          el.textContent = words[i];
+          el.classList.remove("fade");
+        }, 350);
+      }, 3000);
+    })();
+
+    /* ===== 2. 光标跟随光晕 ===== */
+    window.addEventListener("pointermove", function(e){
+      document.body.style.setProperty("--mx", e.clientX + "px");
+      document.body.style.setProperty("--my", e.clientY + "px");
+    }, {passive:true});
+
+    /* ===== 3. 滚动入场 ===== */
+    (function(){
+      if(!("IntersectionObserver" in window)) return;
+      const targets = document.querySelectorAll(
+        "section .section-head, section .about, section .timeline, section .hero-copy, section .contact-copy, section .links-grid"
+      );
+      targets.forEach(function(t){ t.classList.add("reveal"); });
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, {threshold:.12});
+      targets.forEach(function(t){ io.observe(t); });
+    })();
+
+    /* ===== 5. 加载揭幕 ===== */
+    window.addEventListener("load", function(){
+      const v = document.getElementById("veil");
+      if(v){ requestAnimationFrame(function(){ v.classList.add("gone"); }); }
     });
   </script>
 </body>
