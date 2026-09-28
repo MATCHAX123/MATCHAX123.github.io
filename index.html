@@ -1,11 +1,11 @@
-<!doctype html>
+<<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Leven Shaw - Translator, Cultural Intelligence Enthusiast, Linguistics Nerd">
   <meta name="theme-color" content="#f5f3ee">
-  <title>Leven Shaw — Translator & Cultural Intelligence</title>
+  <title>Leven Shaw — Translator &amp; Cultural Intelligence</title>
   <style>
     :root{--paper:#f5f3ee;--ink:#171717;--muted:#77736b;--line:#d8d4ca;--accent:#c85b3e;--max:1160px}
     *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
@@ -13,8 +13,13 @@
     a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
     header{position:sticky;top:0;z-index:10;background:rgba(245,243,238,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
     nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.brand span{color:var(--accent)}
+    .nav-side{display:flex;align-items:center;gap:26px}
     .navlinks{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
     .menu{display:none;background:none;border:0;font-size:24px;color:var(--ink);cursor:pointer}
+    .lang-switch{display:flex;align-items:center;gap:2px;font-size:12px}
+    .lang-switch button{background:none;border:0;font:inherit;font-weight:600;color:var(--muted);cursor:pointer;padding:4px 5px;letter-spacing:.06em;transition:.2s;white-space:nowrap}
+    .lang-switch button:hover{color:var(--accent)}
+    .lang-switch button.active{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
     .hero{min-height:calc(100vh - 77px);display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:70px;padding:80px 0}
     .eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px}
     h1{font-size:clamp(56px,9vw,112px);line-height:.93;letter-spacing:-.085em;max-width:760px}.subtitle{font-size:18px;color:var(--muted);margin:8px 0 20px;font-weight:500}
@@ -27,20 +32,201 @@
     .timeline{margin-top:28px}.timeline-item{margin-bottom:35px;border-left:2px solid var(--line);padding-left:28px;position:relative}.timeline-item:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:50%}.timeline-period{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.timeline-title{font-size:19px;font-weight:600;margin:5px 0}.timeline-desc{font-size:15px;color:var(--muted);line-height:1.6}
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact h2{font-size:clamp(50px,8vw,105px);line-height:.9;letter-spacing:-.09em}.contact-copy{color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:16px}.contact-copy a{color:var(--accent)}
     footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
-    @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.menu{display:block}.hero{grid-template-columns:1fr;gap:48px;padding:60px 0}.portrait{aspect-ratio:1}section{padding:72px 0}.section-head{display:block}.section-head p{margin-top:12px}.about,.contact{grid-template-columns:1fr;gap:36px}.facts-group,.links-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:10px}}
+    @media(max-width:760px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav-side{gap:12px}.navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}.navlinks.open{display:flex}.menu{display:block}.lang-switch{font-size:11px}.lang-switch button{padding:4px 3px}.hero{grid-template-columns:1fr;gap:48px;padding:60px 0}.portrait{aspect-ratio:1}section{padding:72px 0}.section-head{display:block}.section-head p{margin-top:12px}.about,.contact{grid-template-columns:1fr;gap:36px}.facts-group,.links-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:10px}}
   </style>
 </head>
 <body>
-  <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><button class="menu" aria-label="Open menu">☰</button><ul class="navlinks"><li><a href="#about">About</a></li><li><a href="#essays">Essays</a></li><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul></nav></header>
+  <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#essays" data-i18n="nav_essays">Essays</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div></nav></header>
   <main id="top">
-    <section class="hero wrap"><div><div class="eyebrow">Translator & Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact">Get in touch</a><a class="button" href="#work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
-    <section id="about"><div class="wrap"><div class="section-head"><h2>About me</h2><p>Background and interests.</p></div><div class="about"><div><p>I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p>When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3>Current Location</h3><p>Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3>Hometown</h3><p>Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3>Cities lived in</h3><p>Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3>Human Languages</h3><p>Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3>Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3>Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
-    <section id="essays"><div class="wrap"><div class="section-head"><h2>Essays</h2><p>Writing and thinking on language, culture, and translation.</p></div><p class="hero-copy">Writing and thinking on language, culture, and translation.</p></div></section>
-    <section id="work"><div class="wrap"><div class="section-head"><h2>Work Experience</h2><p>Professional background and projects.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period">2025.06 – Present</div><div class="timeline-title">Freelance Translator | Moscow / Qingdao / St. Petersburg</div><div class="timeline-desc">Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.</div></div><div class="timeline-item"><div class="timeline-period">2023.07 – 2023.09</div><div class="timeline-title">TAG Art Museum, Cultural &amp; Artistic Publicity Translation</div><div class="timeline-desc">Publicity Department Assistant</div></div><div class="timeline-item"><div class="timeline-period">2022.10 – 2023.04</div><div class="timeline-title">Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents</div><div class="timeline-desc">Foreign Trade Salesperson &amp; Translator</div></div></div></div></section>
-   <section><div class="wrap"><div class="section-head"><h2>Education</h2><p>Academic background and training.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period">2024 – Present</div><div class="timeline-title">МГУ ЭФ, Management<div class="timeline-desc">Undergraduate</div></div></div><div class="timeline-item"><div class="timeline-period">2023 – 2024</div><div class="timeline-title">МГУ Language School, Gap Year</div></div><div class="timeline-item"><div class="timeline-period">2022 – 2023</div><div class="timeline-title">Shandong University of Arts, Art Management and Art Theory Criticism</div><div class="timeline-desc">Undergraduate</div></div></div></div></section>
-    <section id="contact"><div class="wrap contact"><div><div class="eyebrow">Get in touch</div><h2>Let's<br>connect.</h2></div><div><p class="contact-copy">If you have a translation request, want to collaborate on a project, or just want to chat about language and culture, I'd love to hear from you.</p><p class="contact-copy"><strong>Email:</strong> <a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p><div class="links-grid"><a class="social-link" href="https://t.me/matchax123" target="_blank">Telegram <span class="arrow">→</span></a><a class="social-link" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank">Reddit <span class="arrow">→</span></a><a class="social-link" href="https://x.com/LevenXiao82975" target="_blank">X <span class="arrow">→</span></a><a class="social-link" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank">小红书 <span class="arrow">→</span></a></div></div></div></section>
+    <section class="hero wrap"><div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
+    <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
+    <section id="essays"><div class="wrap"><div class="section-head"><h2 data-i18n="essays_title">Essays</h2><p data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div><p class="hero-copy" data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div></section>
+    <section id="work"><div class="wrap"><div class="section-head"><h2 data-i18n="work_title">Work Experience</h2><p data-i18n="work_sub">Professional background and projects.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="w1_period">2025.06 – Present</div><div class="timeline-title" data-i18n="w1_title">Freelance Translator | Moscow / Qingdao / St. Petersburg</div><div class="timeline-desc" data-i18n="w1_desc">Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w2_period">2023.07 – 2023.09</div><div class="timeline-title" data-i18n="w2_title">TAG Art Museum, Cultural &amp; Artistic Publicity Translation</div><div class="timeline-desc" data-i18n="w2_desc">Publicity Department Assistant</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w3_period">2022.10 – 2023.04</div><div class="timeline-title" data-i18n="w3_title">Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents</div><div class="timeline-desc" data-i18n="w3_desc">Foreign Trade Salesperson &amp; Translator</div></div></div></div></section>
+   <section><div class="wrap"><div class="section-head"><h2 data-i18n="edu_title">Education</h2><p data-i18n="edu_sub">Academic background and training.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="e1_period">2024 – Present</div><div class="timeline-title" data-i18n="e1_title">МГУ ЭФ, Management</div><div class="timeline-desc" data-i18n="e1_desc">Undergraduate</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e2_period">2023 – 2024</div><div class="timeline-title" data-i18n="e2_title">МГУ Language School, Gap Year</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="e3_period">2022 – 2023</div><div class="timeline-title" data-i18n="e3_title">Shandong University of Arts, Art Management and Art Theory Criticism</div><div class="timeline-desc" data-i18n="e3_desc">Undergraduate</div></div></div></div></section>
+    <section id="contact"><div class="wrap contact"><div><div class="eyebrow" data-i18n="contact_eyebrow">Get in touch</div><h2 data-i18n="contact_title">Let's<br>connect.</h2></div><div><p class="contact-copy" data-i18n="contact_p1">If you have a translation request, want to collaborate on a project, or just want to chat about language and culture, I'd love to hear from you.</p><p class="contact-copy"><strong data-i18n="contact_email_label">Email:</strong> <a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p><div class="links-grid"><a class="social-link" href="https://t.me/matchax123" target="_blank">Telegram <span class="arrow">→</span></a><a class="social-link" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank">Reddit <span class="arrow">→</span></a><a class="social-link" href="https://x.com/LevenXiao82975" target="_blank">X <span class="arrow">→</span></a><a class="social-link" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank">小红书 <span class="arrow">→</span></a></div></div></div></section>
   </main>
-  <footer class="wrap"><span>© 2025 Leven Shaw</span><span>Language • Culture • Translation</span></footer>
-  <script>const menu=document.querySelector('.menu'),navLinks=document.querySelector('.navlinks');menu.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>navLinks.classList.remove('open')));</script>
+  <footer class="wrap"><span>© 2025 Leven Shaw</span><span data-i18n="footer_tag">Language • Culture • Translation</span></footer>
+  <script>
+    const I18N = {
+      en: {
+        page_title: "Leven Shaw — Translator & Cultural Intelligence",
+        nav_about: "About", nav_essays: "Essays", nav_work: "Work", nav_contact: "Contact",
+        hero_eyebrow: "Translator & Cultural Intelligence Enthusiast",
+        hero_subtitle: "Chinese–English–Russian Translator | Cultural Intelligence Enthusiast",
+        hero_copy: "I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.",
+        btn_contact: "Get in touch", btn_work: "View my work",
+        about_title: "About me", about_sub: "Background and interests.",
+        about_p1: "I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.",
+        about_p2: "When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.",
+        fact_location: "Current Location", val_location: "Qingdao, Shanghai, Moscow",
+        fact_hometown: "Hometown", val_hometown: "Qingdao",
+        fact_cities: "Cities lived in", val_cities: "Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul",
+        fact_langs: "Human Languages", val_langs: "Mandarin (native), English, Russian, French",
+        fact_code: "Computer Languages", fact_email: "Email",
+        essays_title: "Essays", essays_sub: "Writing and thinking on language, culture, and translation.",
+        work_title: "Work Experience", work_sub: "Professional background and projects.",
+        w1_period: "2025.06 – Present",
+        w1_title: "Freelance Translator | Moscow / Qingdao / St. Petersburg",
+        w1_desc: "Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.",
+        w2_period: "2023.07 – 2023.09",
+        w2_title: "TAG Art Museum, Cultural &amp; Artistic Publicity Translation",
+        w2_desc: "Publicity Department Assistant",
+        w3_period: "2022.10 – 2023.04",
+        w3_title: "Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents",
+        w3_desc: "Foreign Trade Salesperson &amp; Translator",
+        edu_title: "Education", edu_sub: "Academic background and training.",
+        e1_period: "2024 – Present", e1_title: "МГУ ЭФ, Management", e1_desc: "Undergraduate",
+        e2_period: "2023 – 2024", e2_title: "МГУ Language School, Gap Year",
+        e3_period: "2022 – 2023", e3_title: "Shandong University of Arts, Art Management and Art Theory Criticism", e3_desc: "Undergraduate",
+        contact_eyebrow: "Get in touch", contact_title: "Let's<br>connect.",
+        contact_p1: "If you have a translation request, want to collaborate on a project, or just want to chat about language and culture, I'd love to hear from you.",
+        contact_email_label: "Email:", footer_tag: "Language • Culture • Translation"
+      },
+      zh: {
+        page_title: "Leven Shaw — 译者 & 文化智能",
+        nav_about: "关于", nav_essays: "文章", nav_work: "经历", nav_contact: "联系",
+        hero_eyebrow: "译者 & 文化智能爱好者",
+        hero_subtitle: "中 · 英 · 俄 译者 | 文化智能（CQ）爱好者",
+        hero_copy: "我目前兼职从事中英、中俄翻译。同时我也是一名文化智能（CQ）爱好者——不是专业研究者，只是个书读得太多、还爱写点博客的自学者，算是个书斋里的民间哲学家。没错，我也是个语言学极客。",
+        btn_contact: "联系我", btn_work: "查看经历",
+        about_title: "关于我", about_sub: "背景与兴趣。",
+        about_p1: "我是一名译者，也是文化智能爱好者，常驻于青岛、上海与莫斯科之间。我专注于让复杂的想法跨越语言与文化，变得易于理解。",
+        about_p2: "不翻译的时候，你可能会看到我在琢磨语言规律、阅读跨文化传播的内容，或者思考语言如何塑造我们对世界的理解。",
+        fact_location: "当前所在地", val_location: "青岛、上海、莫斯科",
+        fact_hometown: "家乡", val_hometown: "青岛",
+        fact_cities: "居住过的城市", val_cities: "莫斯科、圣彼得堡、青岛、济南、北京、上海、伊斯坦布尔、首尔",
+        fact_langs: "人类语言", val_langs: "普通话（母语）、英语、俄语、法语",
+        fact_code: "计算机语言", fact_email: "邮箱",
+        essays_title: "文章", essays_sub: "关于语言、文化与翻译的写作与思考。",
+        work_title: "工作经历", work_sub: "职业背景与项目。",
+        w1_period: "2025.06 – 至今",
+        w1_title: "自由译者 | 莫斯科 / 青岛 / 圣彼得堡",
+        w1_desc: "法律与公证翻译、B2B 展会口译、商务谈判口译、网站/App 本地化。<br><br>近期项目：2026 圣彼得堡 MIMS Automobility；InterFood Moscow 2025；莫斯科谈判；俄罗斯围棋平台中文本地化。",
+        w2_period: "2023.07 – 2023.09",
+        w2_title: "TAG 西海美术馆，文化与艺术宣传翻译",
+        w2_desc: "宣传部助理",
+        w3_period: "2022.10 – 2023.04",
+        w3_title: "青岛亿安达国际物流，跨境物流与外贸单证",
+        w3_desc: "外贸业务员 &amp; 翻译",
+        edu_title: "教育背景", edu_sub: "学术背景与培训经历。",
+        e1_period: "2024 – 至今", e1_title: "莫斯科国立大学经济系，管理学", e1_desc: "本科",
+        e2_period: "2023 – 2024", e2_title: "莫斯科国立大学语言学校，间隔年",
+        e3_period: "2022 – 2023", e3_title: "山东艺术学院，艺术管理与艺术理论批评", e3_desc: "本科",
+        contact_eyebrow: "联系我", contact_title: "保持<br>联系。",
+        contact_p1: "如果你有翻译需求、想合作项目，或者只是想聊聊语言与文化，我很期待收到你的消息。",
+        contact_email_label: "邮箱：", footer_tag: "语言 • 文化 • 翻译"
+      },
+      ru: {
+        page_title: "Leven Shaw — переводчик и культурный интеллект",
+        nav_about: "Обо мне", nav_essays: "Эссе", nav_work: "Опыт", nav_contact: "Контакты",
+        hero_eyebrow: "Переводчик и энтузиаст культурного интеллекта",
+        hero_subtitle: "Переводчик (кит. – англ. – рус.) | Энтузиаст культурного интеллекта",
+        hero_copy: "Сейчас я подрабатываю переводчиком с китайского на английский и с китайского на русский. Ещё я увлекаюсь культурным интеллектом (CQ) — не профессиональный исследователь, а самоучка, который слишком много читает и пишет об этом в блоге, своего рода кабинетный народный философ. И да, я ещё и лингвистический гик.",
+        btn_contact: "Связаться", btn_work: "Мои работы",
+        about_title: "Обо мне", about_sub: "Биография и интересы.",
+        about_p1: "Я переводчик и энтузиаст культурного интеллекта, живу между Циндао, Шанхаем и Москвой. Моя специализация — делать сложные идеи доступными на разных языках и в разных культурах.",
+        about_p2: "Когда я не перевожу, меня можно застать за изучением языковых закономерностей, чтением о межкультурной коммуникации или размышлениями о том, как язык формирует наше понимание мира.",
+        fact_location: "Текущее местоположение", val_location: "Циндао, Шанхай, Москва",
+        fact_hometown: "Родной город", val_hometown: "Циндао",
+        fact_cities: "Города, где я жил", val_cities: "Москва, Санкт-Петербург, Циндао, Цзинань, Пекин, Шанхай, Стамбул, Сеул",
+        fact_langs: "Человеческие языки", val_langs: "Китайский (родной), английский, русский, французский",
+        fact_code: "Языки программирования", fact_email: "Эл. почта",
+        essays_title: "Эссе", essays_sub: "Тексты и размышления о языке, культуре и переводе.",
+        work_title: "Опыт работы", work_sub: "Профессиональный опыт и проекты.",
+        w1_period: "2025.06 – наст. время",
+        w1_title: "Переводчик-фрилансер | Москва / Циндао / Санкт-Петербург",
+        w1_desc: "Юридический и нотариальный перевод, устный перевод на B2B-выставках, перевод деловых переговоров, локализация сайтов и приложений.<br><br>Недавнее: MIMS Automobility 2026 в Санкт-Петербурге; InterFood Moscow 2025; переговоры в Москве; локализация на китайский для российской платформы Go.",
+        w2_period: "2023.07 – 2023.09",
+        w2_title: "Музей искусства TAG, перевод культурных и художественных материалов",
+        w2_desc: "Ассистент отдела PR",
+        w3_period: "2022.10 – 2023.04",
+        w3_title: "Qingdao Yianda International Logistics, трансграничная логистика и внешнеторговые документы",
+        w3_desc: "Менеджер по внешней торговле и переводчик",
+        edu_title: "Образование", edu_sub: "Академическое образование и подготовка.",
+        e1_period: "2024 – наст. время", e1_title: "МГУ ЭФ, менеджмент", e1_desc: "Бакалавриат",
+        e2_period: "2023 – 2024", e2_title: "Языковая школа МГУ, академический отпуск",
+        e3_period: "2022 – 2023", e3_title: "Шаньдунский университет искусств, арт-менеджмент и критика теории искусства", e3_desc: "Бакалавриат",
+        contact_eyebrow: "Связаться", contact_title: "Будем<br>на связи.",
+        contact_p1: "Если у вас есть запрос на перевод, вы хотите поработать над проектом вместе или просто поговорить о языке и культуре — буду рад вашему сообщению.",
+        contact_email_label: "Эл. почта:", footer_tag: "Язык • Культура • Перевод"
+      },
+      fr: {
+        page_title: "Leven Shaw — traducteur & intelligence culturelle",
+        nav_about: "À propos", nav_essays: "Essais", nav_work: "Parcours", nav_contact: "Contact",
+        hero_eyebrow: "Traducteur & passionné d'intelligence culturelle",
+        hero_subtitle: "Traducteur chinois–anglais–russe | Passionné d'intelligence culturelle",
+        hero_copy: "Je travaille actuellement à temps partiel comme traducteur chinois–anglais et chinois–russe. Je suis aussi un passionné d'intelligence culturelle (CQ) — pas un chercheur professionnel, juste un autodidacte qui lit trop et en parle dans son blog, une sorte de philosophe populaire de salon. Et oui, je suis aussi un mordu de linguistique.",
+        btn_contact: "Me contacter", btn_work: "Voir mon parcours",
+        about_title: "À propos de moi", about_sub: "Parcours et centres d'intérêt.",
+        about_p1: "Je suis traducteur et passionné d'intelligence culturelle, partagé entre Qingdao, Shanghai et Moscou. Je m'attache à rendre les idées complexes accessibles d'une langue et d'une culture à l'autre.",
+        about_p2: "Quand je ne traduis pas, vous me trouverez peut-être en train d'explorer les structures linguistiques, de lire sur la communication interculturelle ou de réfléchir à la façon dont la langue façonne notre compréhension du monde.",
+        fact_location: "Localisation actuelle", val_location: "Qingdao, Shanghai, Moscou",
+        fact_hometown: "Ville d'origine", val_hometown: "Qingdao",
+        fact_cities: "Villes où j'ai vécu", val_cities: "Moscou, Saint-Pétersbourg, Qingdao, Jinan, Pékin, Shanghai, Istanbul, Séoul",
+        fact_langs: "Langues humaines", val_langs: "Mandarin (langue maternelle), anglais, russe, français",
+        fact_code: "Langages informatiques", fact_email: "E-mail",
+        essays_title: "Essais", essays_sub: "Écrits et réflexions sur la langue, la culture et la traduction.",
+        work_title: "Expérience professionnelle", work_sub: "Parcours professionnel et projets.",
+        w1_period: "2025.06 – aujourd'hui",
+        w1_title: "Traducteur indépendant | Moscou / Qingdao / Saint-Pétersbourg",
+        w1_desc: "Traduction juridique et notariée, interprétation en salon B2B, interprétation de négociations commerciales, localisation de sites et d'applications.<br><br>Récent : MIMS Automobility 2026 à Saint-Pétersbourg ; InterFood Moscow 2025 ; négociations à Moscou ; localisation en chinois de la plateforme russe Go.",
+        w2_period: "2023.07 – 2023.09",
+        w2_title: "TAG Art Museum, traduction de supports culturels et artistiques",
+        w2_desc: "Assistant du service communication",
+        w3_period: "2022.10 – 2023.04",
+        w3_title: "Qingdao Yianda International Logistics, logistique transfrontalière et documents de commerce extérieur",
+        w3_desc: "Commercial export et traducteur",
+        edu_title: "Formation", edu_sub: "Parcours académique et formation.",
+        e1_period: "2024 – aujourd'hui", e1_title: "Université d'État de Moscou, Faculté d'économie, Management", e1_desc: "Licence",
+        e2_period: "2023 – 2024", e2_title: "École de langues de l'Université d'État de Moscou, année de césure",
+        e3_period: "2022 – 2023", e3_title: "Université des arts du Shandong, gestion de l'art et critique de la théorie de l'art", e3_desc: "Licence",
+        contact_eyebrow: "Me contacter", contact_title: "Restons<br>en contact.",
+        contact_p1: "Si vous avez une demande de traduction, souhaitez collaborer à un projet, ou simplement discuter de langue et de culture, je serais ravi d'avoir de vos nouvelles.",
+        contact_email_label: "E-mail :", footer_tag: "Langue • Culture • Traduction"
+      }
+    };
+
+    const DEFAULT_LANG = "en";
+    const SUPPORTED = ["en", "zh", "ru", "fr"];
+    const langButtons = document.querySelectorAll(".lang-switch button");
+    const i18nNodes = document.querySelectorAll("[data-i18n]");
+
+    function applyLang(lang) {
+      if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
+      const dict = I18N[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      if (dict.page_title) document.title = dict.page_title;
+      i18nNodes.forEach(function (el) {
+        const key = el.getAttribute("data-i18n");
+        if (Object.prototype.hasOwnProperty.call(dict, key)) el.innerHTML = dict[key];
+      });
+      langButtons.forEach(function (btn) {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+      try { localStorage.setItem("ls-lang", lang); } catch (e) {}
+    }
+
+    langButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () { applyLang(btn.dataset.lang); });
+    });
+
+    (function initLang() {
+      let saved = null;
+      try { saved = localStorage.getItem("ls-lang"); } catch (e) {}
+      if (saved && SUPPORTED.includes(saved)) { applyLang(saved); return; }
+      const nav = (navigator.language || "").toLowerCase();
+      let guess = DEFAULT_LANG;
+      if (nav.indexOf("zh") === 0) guess = "zh";
+      else if (nav.indexOf("ru") === 0) guess = "ru";
+      else if (nav.indexOf("fr") === 0) guess = "fr";
+      applyLang(guess);
+    })();
+
+    const menu = document.querySelector(".menu"), navLinks = document.querySelector(".navlinks");
+    menu.addEventListener("click", function () { navLinks.classList.toggle("open"); });
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () { navLinks.classList.remove("open"); });
+    });
+  </script>
 </body>
 </html>
