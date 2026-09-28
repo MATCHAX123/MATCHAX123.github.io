@@ -43,7 +43,54 @@
     footer{position:relative;z-index:1}
     a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
     header{position:sticky;top:0;z-index:10;background:rgba(246,230,225,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-    nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.brand span{color:var(--accent)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .nav-left{display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.brand span{color:var(--accent)}
+    /* ===== 导航栏里的小火柴人 ===== */
+    .kid-wrap{
+      display:inline-flex;align-items:center;
+      color:var(--ink);line-height:0;
+      opacity:.85;
+    }
+    .kid-fire{width:56px;height:28px;display:block;overflow:visible}
+    .kf-line{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .kf-fill{fill:currentColor}
+    .kf-soft{stroke:currentColor;stroke-width:.9;stroke-linecap:round;fill:none;opacity:.3}
+    /* 默认隐藏全部可变元素 */
+    .kid-wrap .kf-cup,
+    .kid-wrap .kf-laptop,
+    .kid-wrap .kf-book,
+    .kid-wrap .kf-eyes-closed,
+    .kid-wrap .kf-zzz{display:none}
+    /* 早上 */
+    .kid-wrap.s-morning .kf-cup{display:block}
+    .kid-wrap.s-morning .kf-kid{animation:kid-breathe 4.6s ease-in-out infinite}
+    /* 白天 */
+    .kid-wrap.s-day .kf-laptop{display:block}
+    .kid-wrap.s-day .kf-kid{animation:kid-breathe 4.6s ease-in-out infinite}
+    /* 傍晚 */
+    .kid-wrap.s-evening .kf-book{display:block}
+    .kid-wrap.s-evening .kf-kid{animation:kid-breathe 4.6s ease-in-out infinite}
+    /* 夜晚 */
+    .kid-wrap.s-night .kf-eyes-closed{display:block}
+    .kid-wrap.s-night .kf-zzz{display:block}
+    .kid-wrap.s-night .kf-eyes-open,
+    .kid-wrap.s-night .kf-mouth{display:none}
+    .kid-wrap.s-night .kf-kid{animation:kid-breathe 6.2s ease-in-out infinite}
+
+    @keyframes kid-breathe{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-.7px)}
+    }
+    .kf-kid{transform-box:fill-box;transform-origin:center}
+    .kf-zzz text{transform-box:fill-box;transform-origin:center;animation:zf 3s ease-in-out infinite}
+    .kf-zzz text:nth-child(2){animation-delay:1s}
+    @keyframes zf{
+      0%{opacity:0;transform:translateY(2px)}
+      30%{opacity:1}
+      100%{opacity:0;transform:translateY(-3px)}
+    }
+
     .nav-side{display:flex;align-items:center;gap:26px}
     .navlinks{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
     .menu{display:none;background:none;border:0;font-size:24px;color:var(--ink);cursor:pointer}
@@ -59,257 +106,136 @@
     .portrait{aspect-ratio:4/5;background:#ded9cf;position:relative;overflow:hidden;border-radius:2px}.portrait:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.28),transparent 45%,rgba(0,0,0,.08))}.portrait img{width:100%;height:100%;object-fit:cover;display:block}
     section{padding:105px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:42px}.section-head h2{font-size:clamp(42px,7vw,84px);line-height:1;letter-spacing:-.07em}.section-head p{color:var(--muted);font-size:13px}
     .about{display:grid;grid-template-columns:1fr 1fr;gap:60px}.about p{font-size:18px;letter-spacing:-.02em;max-width:560px;line-height:1.75;margin-bottom:20px}.facts{border-top:1px solid var(--line);padding-top:20px}.facts-group{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}.facts-item h3{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.facts-item p{font-size:15px;margin-bottom:0}
-    .else-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .else-card{display:block;padding:26px 26px 48px;border:1px solid var(--line);border-radius:4px;transition:border-color .3s,background .3s,transform .3s;position:relative}
-    .else-card:hover,.else-card:focus-visible{border-color:var(--accent);background:rgba(255,255,255,.5);transform:translateY(-2px);outline:none}
-    .else-meta{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-    .else-title{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
-    .else-desc{font-size:15px;color:var(--muted);line-height:1.6;margin:0}
-    .else-arrow{position:absolute;right:24px;bottom:22px;color:var(--accent);font-size:18px;transition:transform .3s}
-    .else-card:hover .else-arrow{transform:translateX(4px)}
+    .essay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .essay-card{display:block;padding:26px 26px 48px;border:1px solid var(--line);border-radius:4px;transition:border-color .3s,background .3s,transform .3s;position:relative}
+    .essay-card:hover,.essay-card:focus-visible{border-color:var(--accent);background:rgba(255,255,255,.5);transform:translateY(-2px);outline:none}
+    .essay-meta{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    .essay-title{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;line-height:1.3}
+    .essay-desc{font-size:15px;color:var(--muted);line-height:1.6;margin:0}
+    .essay-arrow{position:absolute;right:24px;bottom:22px;color:var(--accent);font-size:18px;transition:transform .3s}
+    .essay-card:hover .essay-arrow{transform:translateX(4px)}
     .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:28px}.social-link{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:4px;font-size:16px}.social-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}.social-link .arrow{float:right}
     .timeline{margin-top:28px}.timeline-item{margin-bottom:35px;border-left:2px solid var(--line);padding-left:28px;position:relative}.timeline-item:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:50%}.timeline-period{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.timeline-title{font-size:19px;font-weight:600;margin:5px 0}.timeline-desc{font-size:15px;color:var(--muted);line-height:1.6}
     .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact h2{font-size:clamp(50px,8vw,105px);line-height:.9;letter-spacing:-.09em}.contact-copy{color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:16px}.contact-copy a{color:var(--accent)}
     footer{padding:28px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;border-top:1px solid var(--line)}
-
-    /* ===== 顶部小孩横幅 ===== */
-    .kidbar{
-      display:flex;align-items:center;justify-content:center;gap:22px;
-      padding:26px 24px 10px;position:relative;z-index:1;flex-wrap:wrap;
-    }
-    .kid-label{
-      font-size:15px;font-weight:500;color:var(--muted);
-      letter-spacing:-.01em;white-space:nowrap;
-    }
-    .kid-activity{
-      color:var(--accent);font-weight:700;font-style:italic;
-      transition:opacity .4s ease;
-    }
-    .kid-scene{width:210px;max-width:60vw}
-    .kid-scene svg{width:100%;height:auto;display:block;overflow:visible}
-
-    /* 默认全部隐藏 */
-    .k-sun,.k-night,.k-prop-cup,.k-prop-laptop,.k-prop-book,
-    .k-eyes-closed,.k-mouth-sleep,.k-zzz{display:none}
-
-    /* 白天：太阳 */
-    .kidbar.s-morning .k-sun,
-    .kidbar.s-day .k-sun,
-    .kidbar.s-evening .k-sun{display:block}
-
-    /* 夜晚：月亮、闭眼、zZ */
-    .kidbar.s-night .k-night,
-    .kidbar.s-night .k-eyes-closed,
-    .kidbar.s-night .k-mouth-sleep,
-    .kidbar.s-night .k-zzz{display:block}
-    .kidbar.s-night .k-eyes-open,
-    .kidbar.s-night .k-mouth-smile{display:none}
-
-    /* 道具 */
-    .kidbar.s-morning .k-prop-cup{display:block}
-    .kidbar.s-day .k-prop-laptop{display:block}
-    .kidbar.s-evening .k-prop-book{display:block}
-
-    /* 动画 */
-    .k-sun{transform-box:fill-box;transform-origin:center;animation:sunspin 90s linear infinite}
-    @keyframes sunspin{to{transform:rotate(360deg)}}
-
-    .k-stars circle{animation:twinkle 3s ease-in-out infinite}
-    .k-stars circle:nth-child(2){animation-delay:.7s}
-    .k-stars circle:nth-child(3){animation-delay:1.4s}
-    .k-stars circle:nth-child(4){animation-delay:2.1s}
-    @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
-
-    .k-kid{animation:breathe 4.5s ease-in-out infinite}
-    @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}
-
-    .k-steam{animation:steam 3.2s ease-in-out infinite}
-    .k-steam-2{animation-delay:1.1s}
-    @keyframes steam{
-      0%{opacity:0;transform:translateY(3px)}
-      35%{opacity:.85}
-      100%{opacity:0;transform:translateY(-9px)}
-    }
-
-    .k-zzz text{
-      transform-box:fill-box;transform-origin:center;
-      animation:zfloat 3.4s ease-in-out infinite;
-    }
-    .k-zzz text:nth-child(2){animation-delay:.6s}
-    .k-zzz text:nth-child(3){animation-delay:1.2s}
-    @keyframes zfloat{
-      0%{opacity:0;transform:translateY(5px) scale(.85)}
-      30%{opacity:1}
-      100%{opacity:0;transform:translateY(-11px) scale(1.06)}
-    }
-
     @media(max-width:760px){
       .wrap{width:min(var(--max),calc(100% - 32px))}
-      .nav-side{gap:12px}
+      nav{gap:10px}
+      .nav-left{gap:10px}
+      .kid-fire{width:44px;height:22px}
+      .nav-side{gap:10px}
       .navlinks{display:none;position:absolute;left:0;right:0;top:76px;padding:18px 16px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:16px}
       .navlinks.open{display:flex}
       .menu{display:block}
       .lang-switch{font-size:11px}.lang-switch button{padding:4px 3px}
-      .kidbar{flex-direction:column;gap:6px;padding:18px 16px 4px}
-      .kid-scene{width:180px;max-width:66vw}
-      .kid-label{font-size:14px}
       .hero{grid-template-columns:1fr;gap:48px;padding:60px 0}
       .portrait{aspect-ratio:1}
       section{padding:72px 0}
       .section-head{display:block}.section-head p{margin-top:12px}
       .about,.contact{grid-template-columns:1fr;gap:36px}
-      .facts-group,.links-grid,.else-grid{grid-template-columns:1fr}
+      .facts-group,.links-grid,.essay-grid{grid-template-columns:1fr}
       footer{flex-direction:column;gap:10px}
     }
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       .reveal{opacity:1;transform:none;transition:none}
       .veil{display:none}
-      .k-sun,.k-kid,.k-steam,.k-zzz text,.k-stars circle{animation:none}
+      .kf-kid,.kf-zzz text{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="veil" id="veil"></div>
+  <header><nav class="wrap">
+    <div class="nav-left">
+      <a class="brand" href="#top">Leven<span>.</span></a>
+      <!-- 导航栏里的小火柴人，按莫斯科时间切换状态 -->
+      <div class="kid-wrap" id="kidWrap" aria-hidden="true">
+        <svg class="kid-fire" viewBox="0 0 56 28" xmlns="http://www.w3.org/2000/svg">
+          <!-- 小床/地面暗示 -->
+          <line x1="8" y1="22" x2="48" y2="22" class="kf-soft"/>
 
-  <!-- ===== 顶部简笔画小孩 ===== -->
-  <div class="kidbar s-day" id="kidbar">
-    <div class="kid-label">Leven is <span class="kid-activity" id="kidActivity">translating</span></div>
-    <div class="kid-scene" aria-hidden="true">
-      <svg viewBox="80 0 200 140" xmlns="http://www.w3.org/2000/svg">
-        <!-- 太阳 -->
-        <g class="k-sun">
-          <circle cx="230" cy="34" r="12" fill="#e9a55e"/>
-          <g stroke="#e9a55e" stroke-width="2" stroke-linecap="round">
-            <line x1="230" y1="15" x2="230" y2="10"/>
-            <line x1="230" y1="53" x2="230" y2="58"/>
-            <line x1="211" y1="34" x2="206" y2="34"/>
-            <line x1="249" y1="34" x2="254" y2="34"/>
-            <line x1="217" y1="21" x2="213" y2="17"/>
-            <line x1="243" y1="21" x2="247" y2="17"/>
-            <line x1="217" y1="47" x2="213" y2="51"/>
-            <line x1="243" y1="47" x2="247" y2="51"/>
-          </g>
-        </g>
+          <g class="kf-kid">
+            <!-- 头 -->
+            <circle cx="11" cy="15" r="4.5" class="kf-line"/>
+            <!-- 两个小揪揪 -->
+            <circle cx="7.5" cy="9.5" r="1.3" class="kf-fill"/>
+            <circle cx="14.5" cy="9.5" r="1.3" class="kf-fill"/>
 
-        <!-- 月亮与星星 -->
-        <g class="k-night">
-          <circle cx="230" cy="34" r="12" fill="#f0dfc4"/>
-          <circle cx="226" cy="30" r="2.4" fill="#e0cba8" opacity=".65"/>
-          <circle cx="234" cy="38" r="1.7" fill="#e0cba8" opacity=".65"/>
-          <circle cx="233" cy="28" r="1.4" fill="#e0cba8" opacity=".65"/>
-          <g class="k-stars" fill="#e9a55e">
-            <circle cx="200" cy="22" r="1.6"/>
-            <circle cx="254" cy="52" r="1.4"/>
-            <circle cx="210" cy="55" r="1.2"/>
-            <circle cx="250" cy="18" r="1.3"/>
-          </g>
-        </g>
+            <!-- 身体（躺着） -->
+            <line x1="15.5" y1="15" x2="39" y2="15" class="kf-line"/>
 
-        <!-- 地面 -->
-        <line x1="88" y1="126" x2="200" y2="126" stroke="#ddd2cd" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- 手臂 -->
+            <line x1="21" y1="15" x2="23" y2="19" class="kf-line"/>
+            <line x1="25" y1="15" x2="27" y2="19" class="kf-line"/>
 
-        <!-- 小孩 -->
-        <g class="k-kid">
-          <!-- 腿 -->
-          <g stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round" fill="none">
-            <line x1="122" y1="106" x2="122" y2="122"/>
-            <line x1="138" y1="106" x2="138" y2="122"/>
-            <line x1="122" y1="122" x2="128" y2="122"/>
-            <line x1="138" y1="122" x2="144" y2="122"/>
+            <!-- 腿 -->
+            <line x1="39" y1="15" x2="46" y2="10" class="kf-line"/>
+            <line x1="39" y1="15" x2="46" y2="20" class="kf-line"/>
+
+            <!-- 睁眼 -->
+            <g class="kf-eyes-open">
+              <circle cx="9" cy="15" r=".9" class="kf-fill"/>
+              <circle cx="13" cy="15" r=".9" class="kf-fill"/>
+            </g>
+
+            <!-- 闭眼（夜晚） -->
+            <g class="kf-eyes-closed">
+              <path d="M8 15 Q9 16 10 15" stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round"/>
+              <path d="M12 15 Q13 16 14 15" stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round"/>
+            </g>
+
+            <!-- 嘴 -->
+            <path class="kf-mouth" d="M10 17 Q11 18 12 17" stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round"/>
           </g>
 
-          <!-- 身体 -->
-          <rect x="113" y="70" width="34" height="38" rx="13" fill="#fff" stroke="#2b2b2b" stroke-width="2.2"/>
-
-          <!-- 手臂 -->
-          <g stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round" fill="none">
-            <path d="M116 82 L101 95"/>
-            <path d="M144 82 L159 95"/>
-          </g>
-          <circle cx="101" cy="95" r="3.2" fill="#fff" stroke="#2b2b2b" stroke-width="2"/>
-          <circle cx="159" cy="95" r="3.2" fill="#fff" stroke="#2b2b2b" stroke-width="2"/>
-
-          <!-- 脖子 -->
-          <line x1="130" y1="67" x2="130" y2="72" stroke="#2b2b2b" stroke-width="2.2"/>
-
-          <!-- 头 -->
-          <circle cx="130" cy="50" r="17" fill="#fff" stroke="#2b2b2b" stroke-width="2.2"/>
-          <!-- 头发 -->
-          <path d="M113 48 A17 17 0 0 1 147 48" fill="none" stroke="#2b2b2b" stroke-width="6" stroke-linecap="round"/>
-          <!-- 两个小揪揪 -->
-          <circle cx="115" cy="33" r="5.2" fill="#2b2b2b"/>
-          <circle cx="145" cy="33" r="5.2" fill="#2b2b2b"/>
-
-          <!-- 睁眼 -->
-          <g class="k-eyes-open" fill="#2b2b2b">
-            <circle cx="123" cy="50" r="2.2"/>
-            <circle cx="137" cy="50" r="2.2"/>
-          </g>
-          <!-- 闭眼 -->
-          <g class="k-eyes-closed" fill="none" stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round">
-            <path d="M120 50 Q123 53 126 50"/>
-            <path d="M134 50 Q137 53 140 50"/>
+          <!-- 早上：冒热气的小茶杯 -->
+          <g class="kf-cup">
+            <path d="M31 11 h5 v4.6 a2.5 2.5 0 0 1 -5 0 z" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M36 12.2 a1.6 1.6 0 0 1 0 2" stroke="currentColor" fill="none" stroke-width="1" stroke-linecap="round"/>
+            <path d="M32.5 9 q1 -1.4 0 -2.8" stroke="currentColor" fill="none" stroke-width=".9" stroke-linecap="round" opacity=".55"/>
+            <path d="M34.5 9 q1 -1.4 0 -2.8" stroke="currentColor" fill="none" stroke-width=".9" stroke-linecap="round" opacity=".55"/>
           </g>
 
-          <!-- 腮红 -->
-          <circle cx="118" cy="57" r="2.6" fill="#f0b3a0" opacity=".5"/>
-          <circle cx="142" cy="57" r="2.6" fill="#f0b3a0" opacity=".5"/>
+          <!-- 白天：小笔记本 -->
+          <g class="kf-laptop">
+            <rect x="30.5" y="9" width="8" height="5.5" rx="1" stroke="currentColor" fill="none" stroke-width="1.2"/>
+            <path d="M29 15.5 l1.5 -.5 h8 l1.5 .5" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="32.5" y1="11" x2="36.5" y2="11" stroke="currentColor" stroke-width=".8" stroke-linecap="round" opacity=".5"/>
+            <line x1="32.5" y1="12.6" x2="35.5" y2="12.6" stroke="currentColor" stroke-width=".8" stroke-linecap="round" opacity=".5"/>
+          </g>
 
-          <!-- 微笑（白天） -->
-          <path class="k-mouth-smile" d="M125 59 Q130 63 135 59" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
-          <!-- 睡着时的嘴（夜晚） -->
-          <path class="k-mouth-sleep" d="M126 60 Q130 62 134 60" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
-        </g>
+          <!-- 傍晚：摊开的小书 -->
+          <g class="kf-book">
+            <path d="M30 14 q4 -2.4 8 0 q-4 2.4 -8 0 z" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="34" y1="11.9" x2="34" y2="14.4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          </g>
 
-        <!-- 茶杯（清晨） -->
-        <g class="k-prop-cup">
-          <path d="M162 100 h16 v8 a8 8 0 0 1 -16 0 z" fill="#fff" stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M178 103 a5 5 0 0 1 0 6" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
-          <path class="k-steam" d="M167 95 q2 -4 0 -7" fill="none" stroke="#c9bdb6" stroke-width="1.6" stroke-linecap="round"/>
-          <path class="k-steam k-steam-2" d="M173 95 q2 -4 0 -7" fill="none" stroke="#c9bdb6" stroke-width="1.6" stroke-linecap="round"/>
-        </g>
-
-        <!-- 笔记本电脑（白天） -->
-        <g class="k-prop-laptop">
-          <rect x="166" y="86" width="28" height="19" rx="2.5" fill="#fff" stroke="#2b2b2b" stroke-width="2"/>
-          <path d="M162 105 h36 l-3 4 h-30 z" fill="#fff" stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"/>
-          <line x1="172" y1="92" x2="188" y2="92" stroke="#ddd2cd" stroke-width="1.6" stroke-linecap="round"/>
-          <line x1="172" y1="97" x2="184" y2="97" stroke="#ddd2cd" stroke-width="1.6" stroke-linecap="round"/>
-        </g>
-
-        <!-- 书本（傍晚） -->
-        <g class="k-prop-book">
-          <path d="M160 104 q14 -9 28 0 q-14 9 -28 0 z" fill="#fff" stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"/>
-          <line x1="174" y1="98" x2="174" y2="108" stroke="#2b2b2b" stroke-width="1.6"/>
-        </g>
-
-        <!-- Zzz（夜晚） -->
-        <g class="k-zzz" fill="#c85b3e" font-family="Inter, sans-serif" font-weight="700">
-          <text x="158" y="42" font-size="11">z</text>
-          <text x="168" y="32" font-size="14">z</text>
-          <text x="181" y="19" font-size="18">z</text>
-        </g>
-      </svg>
+          <!-- 夜晚：飘出来的 zZ -->
+          <g class="kf-zzz" fill="currentColor" font-family="Inter, ui-sans-serif, sans-serif" font-weight="700">
+            <text x="17" y="9" font-size="5">z</text>
+            <text x="21" y="5" font-size="7">z</text>
+          </g>
+        </svg>
+      </div>
     </div>
-  </div>
-
-  <header><nav class="wrap"><a class="brand" href="#top">Leven<span>.</span></a><div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#elsewhere" data-i18n="nav_essays">Elsewhere</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div></nav></header>
+    <div class="nav-side"><ul class="navlinks"><li><a href="#about" data-i18n="nav_about">About</a></li><li><a href="#essays" data-i18n="nav_essays">Essays</a></li><li><a href="#work" data-i18n="nav_work">Work</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="en" class="active">EN</button><button type="button" data-lang="zh">中文</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="fr">FR</button></div><button class="menu" aria-label="Open menu">☰</button></div>
+  </nav></header>
   <main id="top">
     <section class="hero wrap"><div><div class="greet" id="greet">你好</div><div class="eyebrow" data-i18n="hero_eyebrow">Translator &amp; Cultural Intelligence Enthusiast</div><h1>Leven Shaw</h1><div class="subtitle" data-i18n="hero_subtitle">Chinese–English–Russian Translator | Cultural Intelligence Enthusiast</div><p class="hero-copy" data-i18n="hero_copy">I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.</p><div class="actions"><a class="button primary" href="#contact" data-i18n="btn_contact">Get in touch</a><a class="button" href="#work" data-i18n="btn_work">View my work</a></div></div><div class="portrait"><img src="4d341be86451789bf207321e770904d6.jpg" alt="Leven Shaw portrait"></div></section>
     <section id="about"><div class="wrap"><div class="section-head"><h2 data-i18n="about_title">About me</h2><p data-i18n="about_sub">Background and interests.</p></div><div class="about"><div><p data-i18n="about_p1">I'm a translator and cultural intelligence enthusiast based between Qingdao, Shanghai, and Moscow. I specialize in making complex ideas accessible across languages and cultures.</p><p data-i18n="about_p2">When I'm not translating, you might find me exploring linguistic patterns, reading about cross-cultural communication, or thinking about how language shapes our understanding of the world.</p></div><div class="facts"><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_location">Current Location</h3><p data-i18n="val_location">Qingdao, Shanghai, Moscow</p></div><div class="facts-item"><h3 data-i18n="fact_hometown">Hometown</h3><p data-i18n="val_hometown">Qingdao</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_cities">Cities lived in</h3><p data-i18n="val_cities">Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul</p></div><div class="facts-item"><h3 data-i18n="fact_langs">Human Languages</h3><p data-i18n="val_langs">Mandarin (native), English, Russian, French</p></div></div><div class="facts-group"><div class="facts-item"><h3 data-i18n="fact_code">Computer Languages</h3><p>Python</p></div><div class="facts-item"><h3 data-i18n="fact_email">Email</h3><p><a href="mailto:levenxiao@gmail.com">levenxiao@gmail.com</a></p></div></div></div></div></div></section>
-    <section id="elsewhere"><div class="wrap"><div class="section-head"><h2 data-i18n="else_title">Elsewhere</h2><p data-i18n="else_sub">Where else you can find me reading, thinking, and posting.</p></div><div class="else-grid">
-      <a class="else-card" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank" rel="noopener">
-        <div class="else-meta" data-i18n="else_r_meta">Reddit · u/Levenshaw</div>
-        <h3 class="else-title" data-i18n="else_r_title">Reddit</h3>
-        <p class="else-desc" data-i18n="else_r_desc">Long-form replies and slow conversations about language, culture, and translation.</p>
-        <span class="else-arrow">→</span>
+    <section id="essays"><div class="wrap"><div class="section-head"><h2 data-i18n="essays_title">Essays</h2><p data-i18n="essays_sub">Writing and thinking on language, culture, and translation.</p></div><div class="essay-grid">
+      <a class="essay-card" href="https://www.reddit.com/u/Levenshaw/s/sWmxD7X0M3" target="_blank" rel="noopener">
+        <div class="essay-meta" data-i18n="essay_r_meta">Reddit · u/Levenshaw</div>
+        <h3 class="essay-title" data-i18n="essay_r_title">Reddit</h3>
+        <p class="essay-desc" data-i18n="essay_r_desc">Long-form replies and slow conversations about language, culture, and translation.</p>
+        <span class="essay-arrow">→</span>
       </a>
-      <a class="else-card" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank" rel="noopener">
-        <div class="else-meta" data-i18n="else_x_meta">小红书 · Leven</div>
-        <h3 class="else-title" data-i18n="else_x_title">小红书</h3>
-        <p class="else-desc" data-i18n="else_x_desc">Short notes, snapshots, and fragments from life between three languages.</p>
-        <span class="else-arrow">→</span>
+      <a class="essay-card" href="https://xhslink.cn/o/1U8wPWhMwS4" target="_blank" rel="noopener">
+        <div class="essay-meta" data-i18n="essay_x_meta">小红书 · Leven</div>
+        <h3 class="essay-title" data-i18n="essay_x_title">小红书</h3>
+        <p class="essay-desc" data-i18n="essay_x_desc">Short notes, snapshots, and fragments from life between three languages.</p>
+        <span class="essay-arrow">→</span>
       </a>
     </div></div></section>
     <section id="work"><div class="wrap"><div class="section-head"><h2 data-i18n="work_title">Work Experience</h2><p data-i18n="work_sub">Professional background and projects.</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-period" data-i18n="w1_period">2025.06 – Present</div><div class="timeline-title" data-i18n="w1_title">Freelance Translator | Moscow / Qingdao / St. Petersburg</div><div class="timeline-desc" data-i18n="w1_desc">Legal &amp; notarization translation, B2B exhibition interpreting, business negotiation interpreting, website/app localization.<br><br>Recent: 2026 St. Petersburg MIMS Automobility; InterFood Moscow 2025; Moscow negotiations; Russian Go platform Chinese localization.</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w2_period">2023.07 – 2023.09</div><div class="timeline-title" data-i18n="w2_title">TAG Art Museum, Cultural &amp; Artistic Publicity Translation</div><div class="timeline-desc" data-i18n="w2_desc">Publicity Department Assistant</div></div><div class="timeline-item"><div class="timeline-period" data-i18n="w3_period">2022.10 – 2023.04</div><div class="timeline-title" data-i18n="w3_title">Qingdao Yianda International Logistics, Cross-Border Logistics &amp; Foreign Trade Documents</div><div class="timeline-desc" data-i18n="w3_desc">Foreign Trade Salesperson &amp; Translator</div></div></div></div></section>
@@ -321,7 +247,7 @@
     const I18N = {
       en: {
         page_title: "Leven Shaw — Translator & Cultural Intelligence",
-        nav_about: "About", nav_essays: "Elsewhere", nav_work: "Work", nav_contact: "Contact",
+        nav_about: "About", nav_essays: "Essays", nav_work: "Work", nav_contact: "Contact",
         hero_eyebrow: "Translator & Cultural Intelligence Enthusiast",
         hero_subtitle: "Chinese–English–Russian Translator | Cultural Intelligence Enthusiast",
         hero_copy: "I currently work part-time as a Chinese–English and Chinese–Russian translator. I'm also a Cultural Intelligence (CQ) enthusiast—not a professional researcher, just a self-taught one who reads too much and blogs about it, a bit of an armchair folk philosopher. And yes, I'm a linguistics nerd as well.",
@@ -334,13 +260,13 @@
         fact_cities: "Cities lived in", val_cities: "Moscow, Saint Petersburg, Qingdao, Jinan, Beijing, Shanghai, Istanbul, Seoul",
         fact_langs: "Human Languages", val_langs: "Mandarin (native), English, Russian, French",
         fact_code: "Computer Languages", fact_email: "Email",
-        else_title: "Elsewhere", else_sub: "Where else you can find me reading, thinking, and posting.",
-        else_r_meta: "Reddit · u/Levenshaw",
-        else_r_title: "Reddit",
-        else_r_desc: "Long-form replies and slow conversations about language, culture, and translation.",
-        else_x_meta: "Xiaohongshu · Leven",
-        else_x_title: "Xiaohongshu",
-        else_x_desc: "Short notes, snapshots, and fragments from life between three languages.",
+        essays_title: "Essays", essays_sub: "Writing and thinking on language, culture, and translation.",
+        essay_r_meta: "Reddit · u/Levenshaw",
+        essay_r_title: "Reddit",
+        essay_r_desc: "Long-form replies and slow conversations about language, culture, and translation.",
+        essay_x_meta: "Xiaohongshu · Leven",
+        essay_x_title: "Xiaohongshu",
+        essay_x_desc: "Short notes, snapshots, and fragments from life between three languages.",
         work_title: "Work Experience", work_sub: "Professional background and projects.",
         w1_period: "2025.06 – Present",
         w1_title: "Freelance Translator | Moscow / Qingdao / St. Petersburg",
@@ -361,7 +287,7 @@
       },
       zh: {
         page_title: "Leven Shaw — 译者 & 跨文化情商",
-        nav_about: "关于", nav_essays: "别处", nav_work: "经历", nav_contact: "联系",
+        nav_about: "关于", nav_essays: "随笔", nav_work: "经历", nav_contact: "联系",
         hero_eyebrow: "译者 & 跨文化情商爱好者",
         hero_subtitle: "中 · 英 · 俄 译者 | 跨文化情商（CQ）爱好者",
         hero_copy: "我现在兼职做中英、中俄翻译。同时我对跨文化情商（CQ）也很感兴趣——不是专业研究者，只是个爱看书、爱写点东西的自学者，算半个民间哲学家。没错，我也是个语言学爱好者。",
@@ -374,13 +300,13 @@
         fact_cities: "居住过的城市", val_cities: "莫斯科、圣彼得堡、青岛、济南、北京、上海、伊斯坦布尔、首尔",
         fact_langs: "人类语言", val_langs: "普通话（母语）、英语、俄语、法语",
         fact_code: "计算机语言", fact_email: "邮箱",
-        else_title: "别处", else_sub: "我在其他平台上的阅读、思考与碎片。",
-        else_r_meta: "Reddit · u/Levenshaw",
-        else_r_title: "Reddit",
-        else_r_desc: "关于语言、文化与翻译的长回复和慢对话。",
-        else_x_meta: "小红书 · Leven",
-        else_x_title: "小红书",
-        else_x_desc: "三种语言之间生活的短笔记、随手拍与碎片。",
+        essays_title: "随笔", essays_sub: "关于语言、文化与翻译的写作与思考。",
+        essay_r_meta: "Reddit · u/Levenshaw",
+        essay_r_title: "Reddit",
+        essay_r_desc: "关于语言、文化与翻译的长回复和慢对话。",
+        essay_x_meta: "小红书 · Leven",
+        essay_x_title: "小红书",
+        essay_x_desc: "三种语言之间生活的短笔记、随手拍与碎片。",
         work_title: "工作经历", work_sub: "职业背景与项目。",
         w1_period: "2025.06 – 至今",
         w1_title: "自由译者 | 莫斯科 / 青岛 / 圣彼得堡",
@@ -401,7 +327,7 @@
       },
       ru: {
         page_title: "Leven Shaw — переводчик и культурный интеллект",
-        nav_about: "Обо мне", nav_essays: "В других местах", nav_work: "Опыт", nav_contact: "Контакты",
+        nav_about: "Обо мне", nav_essays: "Заметки", nav_work: "Опыт", nav_contact: "Контакты",
         hero_eyebrow: "Переводчик и любитель культурного интеллекта",
         hero_subtitle: "Переводчик (кит. – англ. – рус.) | Любитель культурного интеллекта",
         hero_copy: "Сейчас я подрабатываю переводчиком с китайского на английский и с китайского на русский. Ещё я увлекаюсь культурным интеллектом (CQ) — не профессиональный исследователь, просто самоучка, который много читает и пишет об этом в блоге, немного философ-любитель. И да, я ещё и любитель лингвистики.",
@@ -414,13 +340,13 @@
         fact_cities: "Города, где я жил", val_cities: "Москва, Санкт-Петербург, Циндао, Цзинань, Пекин, Шанхай, Стамбул, Сеул",
         fact_langs: "Человеческие языки", val_langs: "Китайский (родной), английский, русский, французский",
         fact_code: "Языки программирования", fact_email: "Эл. почта",
-        else_title: "В других местах", else_sub: "Где ещё меня можно найти: чтение, мысли, заметки.",
-        else_r_meta: "Reddit · u/Levenshaw",
-        else_r_title: "Reddit",
-        else_r_desc: "Длинные ответы и неспешные разговоры о языке, культуре и переводе.",
-        else_x_meta: "Сяохуншу · Leven",
-        else_x_title: "Сяохуншу",
-        else_x_desc: "Короткие заметки и фрагменты жизни между тремя языками.",
+        essays_title: "Заметки", essays_sub: "Тексты и размышления о языке, культуре и переводе.",
+        essay_r_meta: "Reddit · u/Levenshaw",
+        essay_r_title: "Reddit",
+        essay_r_desc: "Длинные ответы и неспешные разговоры о языке, культуре и переводе.",
+        essay_x_meta: "Сяохуншу · Leven",
+        essay_x_title: "Сяохуншу",
+        essay_x_desc: "Короткие заметки и фрагменты жизни между тремя языками.",
         work_title: "Опыт работы", work_sub: "Профессиональный опыт и проекты.",
         w1_period: "2025.06 – наст. время",
         w1_title: "Переводчик-фрилансер | Москва / Циндао / Санкт-Петербург",
@@ -441,7 +367,7 @@
       },
       fr: {
         page_title: "Leven Shaw — traducteur & intelligence culturelle",
-        nav_about: "À propos", nav_essays: "Ailleurs", nav_work: "Parcours", nav_contact: "Contact",
+        nav_about: "À propos", nav_essays: "Essais", nav_work: "Parcours", nav_contact: "Contact",
         hero_eyebrow: "Traducteur & passionné d'intelligence culturelle",
         hero_subtitle: "Traducteur chinois–anglais–russe | Passionné d'intelligence culturelle",
         hero_copy: "Je travaille actuellement à temps partiel comme traducteur chinois–anglais et chinois–russe. Je suis aussi passionné d'intelligence culturelle (CQ) — pas un chercheur professionnel, juste un autodidacte qui lit beaucoup et en parle dans son blog, une sorte de philosophe amateur. Et oui, je suis aussi un passionné de linguistique.",
@@ -454,13 +380,13 @@
         fact_cities: "Villes où j'ai vécu", val_cities: "Moscou, Saint-Pétersbourg, Qingdao, Jinan, Pékin, Shanghai, Istanbul, Séoul",
         fact_langs: "Langues humaines", val_langs: "Mandarin (langue maternelle), anglais, russe, français",
         fact_code: "Langages informatiques", fact_email: "E-mail",
-        else_title: "Ailleurs", else_sub: "Où me retrouver : lectures, pensées, fragments.",
-        else_r_meta: "Reddit · u/Levenshaw",
-        else_r_title: "Reddit",
-        else_r_desc: "Réponses longues et conversations lentes sur la langue, la culture et la traduction.",
-        else_x_meta: "Xiaohongshu · Leven",
-        else_x_title: "Xiaohongshu",
-        else_x_desc: "Notes courtes et fragments d'une vie entre trois langues.",
+        essays_title: "Essais", essays_sub: "Écrits et réflexions sur la langue, la culture et la traduction.",
+        essay_r_meta: "Reddit · u/Levenshaw",
+        essay_r_title: "Reddit",
+        essay_r_desc: "Réponses longues et conversations lentes sur la langue, la culture et la traduction.",
+        essay_x_meta: "Xiaohongshu · Leven",
+        essay_x_title: "Xiaohongshu",
+        essay_x_desc: "Notes courtes et fragments d'une vie entre trois langues.",
         work_title: "Expérience professionnelle", work_sub: "Parcours professionnel et projets.",
         w1_period: "2025.06 – aujourd'hui",
         w1_title: "Traducteur indépendant | Moscou / Qingdao / Saint-Pétersbourg",
@@ -523,43 +449,32 @@
       link.addEventListener("click", function () { navLinks.classList.remove("open"); });
     });
 
-    /* ===== 顶部小孩：按莫斯科时间切换状态 ===== */
+    /* ===== 导航栏小火柴人：按莫斯科时间切换状态 ===== */
     (function(){
-      const bar = document.getElementById("kidbar");
-      const activity = document.getElementById("kidActivity");
-      if (!bar || !activity) return;
-
+      const wrap = document.getElementById("kidWrap");
+      if (!wrap) return;
       const TZ = "Europe/Moscow";
-
       function moscowHour() {
         try {
           const parts = new Intl.DateTimeFormat("en-US", {
             timeZone: TZ, hour: "numeric", hour12: false
           }).formatToParts(new Date());
           const h = parts.find(function(p){ return p.type === "hour"; });
-          return h ? (parseInt(h.value, 10) % 24) : 0;
+          return h ? (parseInt(h.value, 10) % 24) : new Date().getHours();
         } catch (e) {
           return new Date().getHours();
         }
       }
-
       function update() {
         const h = moscowHour();
-        let state, label;
-        if (h >= 6 && h < 10) {
-          state = "s-morning"; label = "having tea";
-        } else if (h >= 10 && h < 16) {
-          state = "s-day";     label = "translating";
-        } else if (h >= 16 && h < 18) {
-          state = "s-evening"; label = "reading";
-        } else {
-          state = "s-night";   label = "sleeping";
-        }
-        bar.classList.remove("s-morning", "s-day", "s-evening", "s-night");
-        bar.classList.add(state);
-        if (activity.textContent !== label) activity.textContent = label;
+        let state;
+        if (h >= 6 && h < 10) state = "s-morning";
+        else if (h >= 10 && h < 16) state = "s-day";
+        else if (h >= 16 && h < 18) state = "s-evening";
+        else state = "s-night";
+        wrap.classList.remove("s-morning","s-day","s-evening","s-night");
+        wrap.classList.add(state);
       }
-
       update();
       setInterval(update, 60000);
       document.addEventListener("visibilitychange", function(){
@@ -594,7 +509,7 @@
     (function(){
       if(!("IntersectionObserver" in window)) return;
       const targets = document.querySelectorAll(
-        "section .section-head, section .about, section .timeline, section .else-grid, section .hero-copy, section .contact-copy, section .links-grid"
+        "section .section-head, section .about, section .timeline, section .essay-grid, section .hero-copy, section .contact-copy, section .links-grid"
       );
       targets.forEach(function(t){ t.classList.add("reveal"); });
       const io = new IntersectionObserver(function(entries){
